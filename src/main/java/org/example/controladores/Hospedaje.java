@@ -5,9 +5,20 @@ public class Hospedaje {
     private String nombre;
     private double costo;
     private String fechaIngreso;
+
+    public String getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(String idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
     private String fechaSalida;
     private String direccion;
     private String ciudad;
+
+    private String idEmpleado;
 
     public Hospedaje() {
     }

@@ -8,6 +8,14 @@ public class Alimentacion {
     private String fechaAlimentacion;
     private String direccionEstablecimiento;
 
+    public String getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(String idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
     private String idEmpleado;
 
     public Alimentacion() {
