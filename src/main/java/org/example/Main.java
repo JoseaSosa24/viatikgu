@@ -15,10 +15,10 @@ public class Main {
         ArrayList<Alimentacion> alimentos = new ArrayList<Alimentacion>();
         ArrayList<Hospedaje> hospedajes = new ArrayList<Hospedaje>();
         ArrayList<Transporte> transportes = new ArrayList<Transporte>();
-        Alimentacion objAlimentacion=null;
-        Transporte objTransporte=null;
-        Empleado objEmpleado=null;
-        Hospedaje objHospedaje=null;
+        Alimentacion objAlimentacion = null;
+        Transporte objTransporte = null;
+        Empleado objEmpleado = null;
+        Hospedaje objHospedaje = null;
 
         Scanner read = new Scanner(System.in);
         System.out.println("********* Aplicación de viáticos *********");
@@ -38,7 +38,7 @@ public class Main {
 
                 case 1:
                     System.out.println("******INGRESANDO EMPLEADO*****\n");
-                    objEmpleado=new Empleado();
+                    objEmpleado = new Empleado();
                     objEmpleado.agregarEmpleado();
                     empleados.add(objEmpleado);
                     break;
@@ -53,6 +53,69 @@ public class Main {
                                 "3. Ingresar hospedaje\n" +
                                 "0. Salir");
                         optionTravel = read.nextInt();
+
+                        switch (optionTravel) {
+
+                            case 0:
+                                System.out.println("Ha elegido salir del programa");
+                                break;
+
+                            case 1:
+                                System.out.println("**** ingresando transporte ****");
+                                String idEmpleado;
+                                System.out.println("Ingrese el documento del empleado");
+                                idEmpleado = read.next();
+                                if(objEmpleado.buscarEmpleado(empleados, idEmpleado) != null){
+                                    objTransporte = new Transporte();
+                                    objTransporte.setIdEmpleado(idEmpleado);
+                                    objTransporte.agregarTransporte();
+                                    transportes.add(objTransporte);
+
+                                } else {
+                                    System.out.println("El empleado no existe, no se le puede asignar" +
+                                            " trasnporte");
+                                }
+
+                                break;
+
+                            case 2:
+                                System.out.println("**** Ingresando alimentación ****");
+                                System.out.println("Ingrese el documento del empleado");
+                                idEmpleado = read.next();
+                                if(objEmpleado.buscarEmpleado(empleados, idEmpleado) != null){
+                                    objAlimentacion = new Alimentacion();
+                                    objAlimentacion.setIdEmpleado(idEmpleado);
+                                    objAlimentacion.agregarAlimentacion();
+                                    alimentos.add(objAlimentacion);
+
+                                } else {
+                                    System.out.println("El empleado no existe, no se le puede asignar" +
+                                            " alimentacion");
+                                }
+
+                                break;
+
+                            case 3:
+                                System.out.println("**** Ingresando Hospedaje ****");
+                                System.out.println("Ingrese el documento del empleado");
+                                idEmpleado = read.next();
+
+                                if(objEmpleado.buscarEmpleado(empleados, idEmpleado) != null){
+                                    objHospedaje = new Hospedaje();
+                                    objHospedaje.setIdEmpleado(idEmpleado);
+                                    objHospedaje.agregarHospedaje();
+                                    hospedajes.add(objHospedaje);
+
+                                } else {
+                                    System.out.println("El empleado no existe, no se le puede asignar" +
+                                            " un hospedaje");
+                                }
+                                break;
+
+                            default:
+                                System.out.println("Opción no valida");
+
+                        }
 
                     } while (optionTravel != 0);
 

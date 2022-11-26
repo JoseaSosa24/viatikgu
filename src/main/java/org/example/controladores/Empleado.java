@@ -90,6 +90,7 @@ public class Empleado {
         for (Empleado empleado : empleados) {
             if (empleado.getId().equals(empleadoABuscar)) {
                 empleadoEncontrado = empleado;
+                break;
             }
         }
         return empleadoEncontrado;
