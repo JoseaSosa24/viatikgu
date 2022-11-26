@@ -1,6 +1,7 @@
 package org.example.controladores;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Empleado {
     //ATRIBUTOS
@@ -67,6 +68,22 @@ public class Empleado {
         this.rango = rango;
     }
 
+    public void agregarEmpleado() {
+        Scanner read = new Scanner(System.in);
+        System.out.print("Digite Id: ");
+        this.setId(read.next());
+        System.out.print("Digite nombre: ");
+        this.setNombre(read.next());
+        System.out.print("Digite apellido: ");
+        this.setApellido(read.next());
+        System.out.print("Digite cargo: ");
+        this.setCargo(read.next());
+        System.out.print("Digite rango: ");
+        this.setRango(read.next());
+        System.out.print("Digite sueldo: ");
+        this.setSueldo(read.nextDouble());
+    }
+
     public Empleado buscarEmpleado(ArrayList<Empleado> empleados, String empleadoABuscar) {
         Empleado empleadoEncontrado = null;
 
@@ -78,4 +95,24 @@ public class Empleado {
         return empleadoEncontrado;
     }
 
+    public void mostrarEmpleado() {
+        System.out.println("Id: " + this.id
+                + "\nNombre: " + this.nombre
+                + "\nApellido: " + this.apellido
+                + "\nCargo: " + this.cargo
+                + "\nRango: " + this.rango
+                + "\nSueldo: " + this.sueldo
+        );
+    }
+
+    public void mostrarEmpleado(ArrayList<Empleado> empleados) {
+        for (Empleado empleado : empleados) {
+            System.out.println("\nId: " + this.id
+                    + "\nNombre: " + this.nombre
+                    + "\nApellido: " + this.apellido
+                    + "\nCargo: " + this.cargo
+                    + "\nRango: " + this.rango
+                    + "\nSueldo: " + this.sueldo+"\n");
+        }
+    }
 }

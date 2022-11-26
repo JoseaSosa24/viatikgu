@@ -15,10 +15,10 @@ public class Main {
         ArrayList<Alimentacion> alimentos = new ArrayList<Alimentacion>();
         ArrayList<Hospedaje> hospedajes = new ArrayList<Hospedaje>();
         ArrayList<Transporte> transportes = new ArrayList<Transporte>();
-        Alimentacion objAlimentacion;
-        Transporte objTransporte;
-        Empleado objEmpleado;
-        Hospedaje objHospedaje;
+        Alimentacion objAlimentacion=null;
+        Transporte objTransporte=null;
+        Empleado objEmpleado=null;
+        Hospedaje objHospedaje=null;
 
         Scanner read = new Scanner(System.in);
         System.out.println("********* Aplicación de viáticos *********");
@@ -37,15 +37,13 @@ public class Main {
                     break;
 
                 case 1:
+                    System.out.println("******INGRESANDO EMPLEADO*****\n");
+                    objEmpleado=new Empleado();
+                    objEmpleado.agregarEmpleado();
+                    empleados.add(objEmpleado);
                     break;
 
                 case 2:
-                    break;
-
-                case 3:
-                    break;
-
-                case 4:
                     int optionTravel;
                     System.out.println("****** Menú para ingresar viajes ******");
 
@@ -57,6 +55,13 @@ public class Main {
                         optionTravel = read.nextInt();
 
                     } while (optionTravel != 0);
+
+                    break;
+
+                case 3:
+                    objEmpleado.mostrarEmpleado(empleados);
+                    break;
+                case 4:
 
                     break;
 
