@@ -9,6 +9,16 @@ public class Transporte {
     private String ciudadDestino;
     private String alcanceTransporte;
 
+    private String idEmpleado;
+
+    public String getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(String idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
     public Transporte() {
     }
 

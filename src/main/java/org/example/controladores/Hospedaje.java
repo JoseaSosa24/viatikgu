@@ -8,8 +8,19 @@ public class Hospedaje {
     private String fechaSalida;
     private String direccion;
     private String ciudad;
+    private String idEmpleado;
 
+    // constructor vacio
     public Hospedaje() {
+    }
+
+
+    public String getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(String idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
 
     public String getNombre() {
@@ -26,9 +37,9 @@ public class Hospedaje {
 
     public void setCosto(double costo) {
 
-        if (costo>0){
+        if (costo > 0) {
             this.costo = costo;
-        }else {
+        } else {
             System.out.println("Valor invalido.. ");
         }
     }
