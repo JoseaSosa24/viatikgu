@@ -1,6 +1,5 @@
 package org.example.controladores;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Transporte {
@@ -101,18 +100,7 @@ public class Transporte {
         this.ciudadDestino = read.next();
         System.out.print("Ingrese si el destino es nacional o internacional");
         this.alcanceTransporte = read.next();
+
     }
 
-
-    public Transporte buscarTransporte(ArrayList<Transporte> transportes, String empleadoABuscar) {
-        Transporte empleadoEncontrado = null;
-
-        for (Transporte transporte : transportes) {
-            if (transporte.getIdEmpleado().equals(empleadoABuscar)) {
-                empleadoEncontrado = transporte;
-                break;
-            }
-        }
-        return empleadoEncontrado;
-    }
 }

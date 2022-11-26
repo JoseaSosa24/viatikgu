@@ -127,7 +127,15 @@ public class Main {
                     objEmpleado.mostrarEmpleado(empleados);
                     break;
                 case 4:
+                    System.out.println("Ingrese el id del empleado");
+                    String idEmpleadoBuscar = read.next();
+                    if(objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar) != null){
+                        System.out.println("El id del empleado es: " + objEmpleado.getId());
+                        objTransporte.mostrarTransporte(transportes);
 
+
+                    }
+                    
                     break;
 
                 default:
