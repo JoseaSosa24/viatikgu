@@ -1,5 +1,7 @@
 package org.example.controladores;
 
+import java.util.Scanner;
+
 public class Alimentacion {
 
     private String nombreEstablecimiento;
@@ -64,4 +66,28 @@ public class Alimentacion {
     public void setDireccionEstablecimiento(String direccionEstablecimiento) {
         this.direccionEstablecimiento = direccionEstablecimiento;
     }
+
+    // métodos
+
+    public void agregarAlimentacion(){
+        Scanner read = new Scanner(System.in);
+        System.out.print("Digite el nombre del establecimiento ");
+        this.nombreEstablecimiento = read.next();
+        System.out.print("Ingrese el tipo de comida");
+        this.tipoComida = read.next();
+        System.out.print("Ingrese el costo de la comida");
+        this.costoComida = read.nextDouble();
+        System.out.print("Ingrese la fecha de la comida");
+        this.fechaAlimentacion = read.next();
+        System.out.print("Ingrese la direccion del establecimiento");
+        this.direccionEstablecimiento = read.next();
+    }
+
+
+
+
 }
+
+
+
+

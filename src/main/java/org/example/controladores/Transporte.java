@@ -1,5 +1,7 @@
 package org.example.controladores;
 
+import java.util.Scanner;
+
 public class Transporte {
     private String tipoTransporte;
     private double costoTransporte;
@@ -8,7 +10,6 @@ public class Transporte {
     private String ciudadOrigen;
     private String ciudadDestino;
     private String alcanceTransporte;
-
     private String idEmpleado;
 
     public String getIdEmpleado() {
@@ -81,4 +82,25 @@ public class Transporte {
     public void setAlcanceTransporte(String alcanceTransporte) {
         this.alcanceTransporte = alcanceTransporte;
     }
+
+    // metodos
+    public void agregarTransporte(){
+        Scanner read = new Scanner(System.in);
+        System.out.print("Ingrese el tipo de transporte: ");
+        this.tipoTransporte = read.next();
+        System.out.print("Ingrese el costo del trasnporte: ");
+        this.costoTransporte = read.nextDouble();
+        System.out.print("Ingrese la fecha de salida: ");
+        this.fechaSalida = read.next();
+        System.out.print("Ingrese la fecha de regreso: ");
+        this.fechaRegreso = read.next();
+        System.out.print("Ingrese la ciudad de salida: ");
+        this.ciudadOrigen = read.next();
+        System.out.print("Ingrese la ciudad de Destino: ");
+        this.ciudadDestino = read.next();
+        System.out.print("Ingrese si el destino es nacional o internacional");
+        this.alcanceTransporte = read.next();
+
+    }
+
 }
