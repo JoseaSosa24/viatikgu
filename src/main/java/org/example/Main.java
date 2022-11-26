@@ -1,15 +1,30 @@
 package org.example;
 
+import org.example.controladores.Alimentacion;
+import org.example.controladores.Empleado;
+import org.example.controladores.Hospedaje;
+import org.example.controladores.Transporte;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
+        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+        ArrayList<Alimentacion> alimentos = new ArrayList<Alimentacion>();
+        ArrayList<Hospedaje> hospedajes = new ArrayList<Hospedaje>();
+        ArrayList<Transporte> transportes = new ArrayList<Transporte>();
+        Alimentacion objAlimentacion;
+        Transporte objTransporte;
+        Empleado objEmpleado;
+        Hospedaje objHospedaje;
+
         Scanner read = new Scanner(System.in);
         System.out.println("********* Aplicación de viáticos *********");
         int option;
 
-        do{
+        do {
             System.out.println("1. Registrar empleado \n" +
                     "2. Registrar viajes (trasnporte, hospedaje, alimentación) \n" +
                     "3. Ver empleados \n" +
@@ -17,7 +32,7 @@ public class Main {
                     "0. Salir ");
             option = read.nextInt();
 
-            switch (option){
+            switch (option) {
                 case 0:
                     break;
 
@@ -41,7 +56,7 @@ public class Main {
                                 "0. Salir");
                         optionTravel = read.nextInt();
 
-                    }while (optionTravel != 0);
+                    } while (optionTravel != 0);
 
                     break;
 
@@ -50,14 +65,7 @@ public class Main {
             }
 
 
-
-        }while(option != 0);
-
-
-
-
-
-
+        } while (option != 0);
 
 
     }

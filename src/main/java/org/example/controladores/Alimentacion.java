@@ -7,6 +7,11 @@ public class Alimentacion {
     private double costoComida;
     private String fechaAlimentacion;
     private String direccionEstablecimiento;
+    private String idEmpleado;
+
+
+    public Alimentacion() {
+    }
 
     public String getIdEmpleado() {
         return idEmpleado;
@@ -14,11 +19,6 @@ public class Alimentacion {
 
     public void setIdEmpleado(String idEmpleado) {
         this.idEmpleado = idEmpleado;
-    }
-
-    private String idEmpleado;
-
-    public Alimentacion() {
     }
 
     public String getNombreEstablecimiento() {
