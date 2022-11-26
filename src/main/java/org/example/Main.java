@@ -11,10 +11,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
-        ArrayList<Alimentacion> alimentos = new ArrayList<Alimentacion>();
-        ArrayList<Hospedaje> hospedajes = new ArrayList<Hospedaje>();
-        ArrayList<Transporte> transportes = new ArrayList<Transporte>();
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        ArrayList<Alimentacion> alimentos = new ArrayList<>();
+        ArrayList<Hospedaje> hospedajes = new ArrayList<>();
+        ArrayList<Transporte> transportes = new ArrayList<>();
         Alimentacion objAlimentacion = null;
         Transporte objTransporte = null;
         Empleado objEmpleado = null;
@@ -25,11 +25,12 @@ public class Main {
         int option;
 
         do {
-            System.out.println("1. Registrar empleado \n" +
-                    "2. Registrar viajes (trasnporte, hospedaje, alimentación) \n" +
-                    "3. Ver empleados \n" +
-                    "4. Ver viajes de un empleado\n" +
-                    "0. Salir ");
+            System.out.println("""
+                    1. Registrar empleado\s
+                    2. Registrar viajes (trasnporte, hospedaje, alimentación)\s
+                    3. Ver empleados\s
+                    4. Ver viajes de un empleado
+                    0. Salir\s""");
             option = read.nextInt();
 
             switch (option) {
@@ -48,10 +49,11 @@ public class Main {
                     System.out.println("****** Menú para ingresar viajes ******");
 
                     do {
-                        System.out.println("1. Ingresar transporte\n" +
-                                "2. Ingresar Alimentacion\n" +
-                                "3. Ingresar hospedaje\n" +
-                                "0. Salir");
+                        System.out.println("""
+                                1. Ingresar transporte
+                                2. Ingresar Alimentacion
+                                3. Ingresar hospedaje
+                                0. Salir""");
                         optionTravel = read.nextInt();
 
                         switch (optionTravel) {
