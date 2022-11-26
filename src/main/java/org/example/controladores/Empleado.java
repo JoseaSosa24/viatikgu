@@ -1,5 +1,7 @@
 package org.example.controladores;
 
+import java.util.ArrayList;
+
 public class Empleado {
     //ATRIBUTOS
     private String nombre;
@@ -50,9 +52,9 @@ public class Empleado {
 
     public void setSueldo(double sueldo) {
 
-        if (sueldo>0){
+        if (sueldo > 0) {
             this.sueldo = sueldo;
-        }else {
+        } else {
             System.out.println("Sueldo  no valido..");
         }
     }
@@ -64,4 +66,16 @@ public class Empleado {
     public void setRango(String rango) {
         this.rango = rango;
     }
+
+    public Empleado buscarEmpleado(ArrayList<Empleado> empleados, String empleadoABuscar) {
+        Empleado empleadoEncontrado = null;
+
+        for (Empleado empleado : empleados) {
+            if (empleado.getId().equals(empleadoABuscar)) {
+                empleadoEncontrado = empleado;
+            }
+        }
+        return empleadoEncontrado;
+    }
+
 }
