@@ -82,7 +82,7 @@ public class Main {
 
                             case 2:
                                 System.out.println("**** Ingresando alimentación ****");
-                                System.out.println("Ingrese el documento del empleado");
+                                System.out.print("Ingrese el documento del empleado");
                                 idEmpleado = read.next();
                                 if(objEmpleado.buscarEmpleado(empleados, idEmpleado) != null){
                                     objAlimentacion = new Alimentacion();
