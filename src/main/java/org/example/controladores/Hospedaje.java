@@ -1,5 +1,6 @@
 package org.example.controladores;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Hospedaje {
@@ -79,7 +80,7 @@ public class Hospedaje {
     }
 
     // metodos
-    public void agregarHospedaje(){
+    public void agregarHospedaje() {
         Scanner read = new Scanner(System.in);
         System.out.print("Ingrese el nombre del lugar de hospedaje: ");
         this.nombre = read.next();
@@ -93,5 +94,17 @@ public class Hospedaje {
         this.direccion = read.next();
         System.out.println("Ingrese la ciudad del lugar de hospedaje");
         this.ciudad = read.next();
+    }
+
+    public Hospedaje buscarHospedaje(ArrayList<Hospedaje> hospedajes, String empleadoABuscar) {
+        Hospedaje empleadoEncontrado = null;
+
+        for (Hospedaje hospedaje : hospedajes) {
+            if (hospedaje.getIdEmpleado().equals(empleadoABuscar)) {
+                empleadoEncontrado = hospedaje;
+                break;
+            }
+        }
+        return empleadoEncontrado;
     }
 }

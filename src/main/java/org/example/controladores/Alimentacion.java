@@ -1,5 +1,6 @@
 package org.example.controladores;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Alimentacion {
@@ -44,9 +45,9 @@ public class Alimentacion {
     }
 
     public void setCostoComida(double costoComida) {
-        if (costoComida>0){
+        if (costoComida > 0) {
             this.costoComida = costoComida;
-        }else {
+        } else {
             System.out.println("Valor invalido, digita de nuevo..");
         }
     }
@@ -69,7 +70,7 @@ public class Alimentacion {
 
     // métodos
 
-    public void agregarAlimentacion(){
+    public void agregarAlimentacion() {
         Scanner read = new Scanner(System.in);
         System.out.print("Digite el nombre del establecimiento ");
         this.nombreEstablecimiento = read.next();
@@ -83,7 +84,17 @@ public class Alimentacion {
         this.direccionEstablecimiento = read.next();
     }
 
+    public Alimentacion buscarAlimentacion(ArrayList<Alimentacion> alimentaciones, String empleadoABuscar) {
+        Alimentacion empleadoEncontrado = null;
 
+        for (Alimentacion alimentacion : alimentaciones) {
+            if (alimentacion.getIdEmpleado().equals(empleadoABuscar)) {
+                empleadoEncontrado = alimentacion;
+                break;
+            }
+        }
+        return empleadoEncontrado;
+    }
 
 
 }
