@@ -1,5 +1,6 @@
 package org.example.controladores;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Transporte {
@@ -36,11 +37,11 @@ public class Transporte {
     }
 
     public void setCostoTransporte(double costoTransporte) {
-       if (costoTransporte>0){
-           this.costoTransporte = costoTransporte;
-       }else{
-           System.out.println("El valor es invalido..");
-       }
+        if (costoTransporte > 0) {
+            this.costoTransporte = costoTransporte;
+        } else {
+            System.out.println("El valor es invalido..");
+        }
     }
 
     public String getFechaSalida() {
@@ -84,7 +85,7 @@ public class Transporte {
     }
 
     // metodos
-    public void agregarTransporte(){
+    public void agregarTransporte() {
         Scanner read = new Scanner(System.in);
         System.out.print("Ingrese el tipo de transporte: ");
         this.tipoTransporte = read.next();
@@ -103,4 +104,39 @@ public class Transporte {
 
     }
 
+
+    public Alimentacion buscarTransporte(ArrayList<Alimentacion> transportes, String empleadoABuscar) {
+        Alimentacion empleadoEncontrado = null;
+
+        for (Alimentacion alimentacion : transportes) {
+            if (alimentacion.getIdEmpleado().equals(empleadoABuscar)) {
+                empleadoEncontrado = alimentacion;
+                break;
+            }
+        }
+        return empleadoEncontrado;
+    }
+    public void mostrarTransporte(ArrayList<Transporte> transportes) {
+        for (Transporte transporte : transportes) {
+            System.out.println("\nEl tipo de transporte fue: " + this.tipoTransporte
+                    + "\nEl costo del transporte es: " + this.costoTransporte
+                    + "\nLa fecha de salida fue : " + this.fechaSalida
+                    + "\nLa fecha de llegada es : " + this.fechaRegreso
+                    + "\nLa ciudad de origen: " + this.ciudadOrigen
+                    + "\nLa ciudad de destino es: " + this.ciudadDestino
+                    + "\nEl alcance del viajes es " + this.alcanceTransporte
+            );
+        }
+    }
+
+    public void mostrarTransporte() {
+        System.out.println("\nEl tipo de transporte fue: " + this.tipoTransporte
+                + "\nEl costo del transporte es: " + this.costoTransporte
+                + "\nLa fecha de salida fue : " + this.fechaSalida
+                + "\nLa fecha de llegada es : " + this.fechaRegreso
+                + "\nLa ciudad de origen: " + this.ciudadOrigen
+                + "\nLa ciudad de destino es: " + this.ciudadDestino
+                + "\nEl alcance del viajes es " + this.alcanceTransporte
+        );
+    }
 }
