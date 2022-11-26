@@ -1,5 +1,6 @@
 package org.example.controladores;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Transporte {
@@ -101,6 +102,19 @@ public class Transporte {
         System.out.print("Ingrese si el destino es nacional o internacional");
         this.alcanceTransporte = read.next();
 
+    }
+
+    public void mostrarTransporte(ArrayList <Transporte> transportes){
+        for (Transporte transporte : transportes) {
+            System.out.println("\nEl tipo de transporte fue: " + this.tipoTransporte
+                    + "\nEl costo del transporte es: " + this.costoTransporte
+                    + "\nLa fecha de salida fue : " + this.fechaSalida
+                    + "\nLa fecha de llegada es : " + this.fechaRegreso
+                    + "\nLa ciudad de origen: " + this.ciudadOrigen
+                    + "\nLa ciudad de destino es: " + this.ciudadDestino
+                    + "\nEl alcance del viajes es " + this.alcanceTransporte
+            );
+        }
     }
 
 }
