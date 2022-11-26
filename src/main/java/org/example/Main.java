@@ -31,6 +31,18 @@ public class Main {
                     break;
 
                 case 4:
+                    int optionTravel;
+                    System.out.println("****** Menú para ingresar viajes ******");
+
+                    do {
+                        System.out.println("1. Ingresar transporte\n" +
+                                "2. Ingresar Alimentacion\n" +
+                                "3. Ingresar hospedaje\n" +
+                                "0. Salir");
+                        optionTravel = read.nextInt();
+
+                    }while (optionTravel != 0);
+
                     break;
 
                 default:
