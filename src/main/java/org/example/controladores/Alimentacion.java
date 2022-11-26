@@ -8,6 +8,8 @@ public class Alimentacion {
     private String fechaAlimentacion;
     private String direccionEstablecimiento;
 
+    private String idEmpleado;
+
     public Alimentacion() {
     }
 
