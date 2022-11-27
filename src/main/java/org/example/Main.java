@@ -59,10 +59,10 @@ public class Main {
                     System.out.println("\n******INGRESANDO EMPLEADO*****\n");
                     objEmpleado = new Empleado();
                     objEmpleado.agregarEmpleado();
-                    if (objEmpleado.buscarEmpleado(empleados,objEmpleado.getId())==null) {
+                    if (objEmpleado.buscarEmpleado(empleados, objEmpleado.getId()) == null) {
                         empleados.add(objEmpleado);
                         System.out.print("\n¡Empleado agregado correctamente!\n");
-                    }else {
+                    } else {
                         System.out.println("\nEl empleado con esa ID, YA existe");
                     }
                     break;
@@ -74,18 +74,38 @@ public class Main {
                     String idEmpleado = read.next();
                     objEmpleado = new Empleado();
                     if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
+                        //boolean banderaAlimentacion = false, banderaHospedaje = false, banderaTrasnporte = false;
+                        int contTransporte = 0, contAlimentacion = 0, contHospedaje = 0;
+
                         do {
                             System.out.println("\n**** INGRESANDO VIATICOS ****");
-                            System.out.println("\n"+"""
+                            System.out.println("\n" + """
                                     1. Ingresar Transporte
                                     2. Ingresar Alimentacion
                                     3. Ingresar Hospedaje
                                     0. Salir""");
                             optionTravel = read.nextInt();
+
+
                             switch (optionTravel) {
 
                                 case 0:
-                                    System.out.println("Ha elegido salir del programa");
+                                    if ((contTransporte < contHospedaje) || (contTransporte < contAlimentacion)) {
+                                        System.out.print("\nFalta el registro de los viáticos de Transporte");
+                                    }
+
+                                    if((contAlimentacion < contTransporte) || (contAlimentacion < contHospedaje)){
+                                        System.out.print("\nFalta el registro de los viáticos de alimentación");
+                                    }
+
+                                    if ((contHospedaje < contAlimentacion) || (contHospedaje < contTransporte)) {
+                                        System.out.print("\nFalta el registro de los viáticos de Hospedaje");
+                                    }
+
+                                    if((contTransporte == contAlimentacion) && (contAlimentacion == contHospedaje))    {
+                                        System.out.println("Ha elegido salir del programa");
+                                    }
+                                    System.out.println("");
                                     break;
 
                                 case 1:
@@ -94,6 +114,8 @@ public class Main {
                                     objTransporte.setIdEmpleado(idEmpleado);
                                     objTransporte.agregarTransporte();
                                     transportes.add(objTransporte);
+                                    contTransporte ++;
+
                                     break;
 
                                 case 2:
@@ -102,6 +124,7 @@ public class Main {
                                     objAlimentacion.setIdEmpleado(idEmpleado);
                                     objAlimentacion.agregarAlimentacion();
                                     alimentos.add(objAlimentacion);
+                                    contAlimentacion ++;
                                     break;
 
                                 case 3:
@@ -110,15 +133,20 @@ public class Main {
                                     objHospedaje.setIdEmpleado(idEmpleado);
                                     objHospedaje.agregarHospedaje();
                                     hospedajes.add(objHospedaje);
+                                    contHospedaje ++;
                                     break;
 
                                 default:
                                     System.out.println("Opción no valida");
                             }
-                        } while (optionTravel != 0);
+
+
+                        } while ((optionTravel != 0) || ((contTransporte < contHospedaje) || (contHospedaje < contAlimentacion) || (contTransporte < contAlimentacion)));
+
                     } else {
                         System.out.println("\nEl empleado no existe, NO se le puede asignar viaticos\n");
                     }
+
                     break;
 
                 case 3:
@@ -131,7 +159,7 @@ public class Main {
                     System.out.print("\nIngrese el id del empleado a mostrar viajes: ");
                     String idEmpleadoBuscar = read.next();
                     objEmpleado = new Empleado();
-                    Empleado empleadoEncontrado=objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar);
+                    Empleado empleadoEncontrado = objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar);
                     if (empleadoEncontrado != null) {
                         objTransporte = new Transporte();
                         if (!transportes.isEmpty()) {
