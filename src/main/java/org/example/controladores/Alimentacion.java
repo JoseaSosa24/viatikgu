@@ -116,11 +116,11 @@ public class Alimentacion {
 
     public void mostrarAlimentacion(ArrayList<Alimentacion> alimentaciones) {
         for (Alimentacion alimentacion : alimentaciones) {
-            System.out.println("\nLugar alimentación: " + this.nombreEstablecimiento
-                    + "\nTipo comida: " + this.tipoComida
-                    + "\nCosto: " + this.costoComida
-                    + "\nFecha Comida: " + this.fechaAlimentacion
-                    + "\nDirección: " + this.direccionEstablecimiento + "\n"
+            System.out.println("\nLugar alimentación: " + alimentacion.nombreEstablecimiento
+                    + "\nTipo comida: " + alimentacion.tipoComida
+                    + "\nCosto: " + alimentacion.costoComida
+                    + "\nFecha Comida: " + alimentacion.fechaAlimentacion
+                    + "\nDirección: " + alimentacion.direccionEstablecimiento + "\n"
             );
         }
 
@@ -129,11 +129,11 @@ public class Alimentacion {
     public void mostrarAlimentacion(ArrayList<Alimentacion> alimentaciones, String idEmpleadoViajero) {
         for (Alimentacion alimentacion : alimentaciones) {
             if (alimentacion.getIdEmpleado().equals(idEmpleadoViajero))
-                System.out.println("\nLugar alimentación: " + this.nombreEstablecimiento
-                        + "\nTipo comida: " + this.tipoComida
-                        + "\nCosto: " + this.costoComida
-                        + "\nFecha Comida: " + this.fechaAlimentacion
-                        + "\nDirección: " + this.direccionEstablecimiento + "\n"
+                System.out.println("\nLugar alimentación: " + alimentacion.nombreEstablecimiento
+                        + "\nTipo comida: " + alimentacion.tipoComida
+                        + "\nCosto: " + alimentacion.costoComida
+                        + "\nFecha Comida: " + alimentacion.fechaAlimentacion
+                        + "\nDirección: " + alimentacion.direccionEstablecimiento + "\n"
                 );
         }
     }

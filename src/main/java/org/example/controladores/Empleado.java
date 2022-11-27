@@ -6,23 +6,23 @@ import java.util.Scanner;
 
 public class Empleado {
     //ATRIBUTOS
+    private String id;
     private String nombre;
     private String apellido;
-    private String id;
     private String cargo;
-    private double sueldo;
     private String rango;
+    private double sueldo;
 
     public Empleado() {
     }
 
-    public Empleado(String nombre, String apellido, String id, String cargo, double sueldo, String rango) {
+    public Empleado(String id, String nombre, String apellido, String cargo, String rango, double sueldo) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.id = id;
         this.cargo = cargo;
-        this.sueldo = sueldo;
         this.rango = rango;
+        this.sueldo = sueldo;
     }
 
     public String getNombre() {
@@ -119,12 +119,12 @@ public class Empleado {
 
     public void mostrarEmpleado(ArrayList<Empleado> empleados) {
         for (Empleado empleado : empleados) {
-            System.out.println("\nId: " + this.id
-                    + "\nNombre: " + this.nombre
-                    + "\nApellido: " + this.apellido
-                    + "\nCargo: " + this.cargo
-                    + "\nRango: " + this.rango
-                    + "\nSueldo: " + this.sueldo+"\n");
+            System.out.println("\nId: " + empleado.id
+                    + "\nNombre: " + empleado.nombre
+                    + "\nApellido: " + empleado.apellido
+                    + "\nCargo: " + empleado.cargo
+                    + "\nRango: " + empleado.rango
+                    + "\nSueldo: " + empleado.sueldo);
         }
     }
 }
