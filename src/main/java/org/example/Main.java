@@ -59,85 +59,66 @@ public class Main {
                     System.out.println("\n******INGRESANDO EMPLEADO*****\n");
                     objEmpleado = new Empleado();
                     objEmpleado.agregarEmpleado();
-                    empleados.add(objEmpleado);
+                    if (objEmpleado.buscarEmpleado(empleados,objEmpleado.getId())==null) {
+                        empleados.add(objEmpleado);
+                        System.out.print("\n¡Empleado agregado correctamente!\n");
+                    }else {
+                        System.out.println("\nEl empleado con esa ID, YA existe");
+                    }
                     break;
 
                 case 2:
                     int optionTravel;
                     System.out.println("\n****** Menú para ingresar viajes ******\n");
+                    System.out.print("Ingrese el id del empleado para asignarle viaticos: ");
+                    String idEmpleado = read.next();
+                    objEmpleado = new Empleado();
+                    if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
+                        do {
+                            System.out.println("\n**** INGRESANDO VIATICOS ****");
+                            System.out.println("\n"+"""
+                                    1. Ingresar Transporte
+                                    2. Ingresar Alimentacion
+                                    3. Ingresar Hospedaje
+                                    0. Salir""");
+                            optionTravel = read.nextInt();
+                            switch (optionTravel) {
 
-                    do {
-                        System.out.println("""
-                                1. Ingresar Transporte
-                                2. Ingresar Alimentacion
-                                3. Ingresar Hospedaje
-                                0. Salir""");
-                        optionTravel = read.nextInt();
+                                case 0:
+                                    System.out.println("Ha elegido salir del programa");
+                                    break;
 
-
-                        switch (optionTravel) {
-
-                            case 0:
-                                System.out.println("Ha elegido salir del programa");
-                                break;
-
-                            case 1:
-                                System.out.println("\n**** Ingresando transporte ****\n");
-                                String idEmpleado;
-                                System.out.print("Ingrese el documento del empleado: ");
-                                idEmpleado = read.next();
-                                objEmpleado = new Empleado();
-                                if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
+                                case 1:
+                                    System.out.println("\n**** Ingresando transporte ****\n");
                                     objTransporte = new Transporte();
                                     objTransporte.setIdEmpleado(idEmpleado);
                                     objTransporte.agregarTransporte();
                                     transportes.add(objTransporte);
+                                    break;
 
-                                } else {
-                                    System.out.println("El empleado no existe, no se le puede asignar" +
-                                            " transporte");
-                                }
-                                break;
-
-                            case 2:
-                                System.out.println("\n**** Ingresando alimentación ****\n");
-                                System.out.print("Ingrese el documento del empleado: ");
-                                idEmpleado = read.next();
-                                objEmpleado = new Empleado();
-                                if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
+                                case 2:
+                                    System.out.println("\n**** Ingresando Alimentación ****");
                                     objAlimentacion = new Alimentacion();
                                     objAlimentacion.setIdEmpleado(idEmpleado);
                                     objAlimentacion.agregarAlimentacion();
                                     alimentos.add(objAlimentacion);
+                                    break;
 
-                                } else {
-                                    System.out.println("El empleado no existe, no se le puede asignar" +
-                                            " alimentacion");
-                                }
-                                break;
-
-                            case 3:
-                                System.out.println("\n**** Ingresando Hospedaje ****\n");
-                                System.out.print("Ingrese el documento del empleado: ");
-                                idEmpleado = read.next();
-                                objEmpleado = new Empleado();
-                                if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
+                                case 3:
+                                    System.out.println("\n**** Ingresando Hospedaje ****\n");
                                     objHospedaje = new Hospedaje();
                                     objHospedaje.setIdEmpleado(idEmpleado);
                                     objHospedaje.agregarHospedaje();
                                     hospedajes.add(objHospedaje);
+                                    break;
 
-                                } else {
-                                    System.out.println("El empleado no existe, no se le puede asignar" +
-                                            " un hospedaje");
-                                }
-                                break;
-
-                            default:
-                                System.out.println("Opción no valida");
-                        }
-                    } while (optionTravel != 0);
-
+                                default:
+                                    System.out.println("Opción no valida");
+                            }
+                        } while (optionTravel != 0);
+                    } else {
+                        System.out.println("\nEl empleado no existe, NO se le puede asignar viaticos\n");
+                    }
                     break;
 
                 case 3:
@@ -147,17 +128,18 @@ public class Main {
                     System.out.println("\n------------------------------------\n");
                     break;
                 case 4:
-                    System.out.print("\nIngrese el id del empleado: ");
+                    System.out.print("\nIngrese el id del empleado a mostrar viajes: ");
                     String idEmpleadoBuscar = read.next();
                     objEmpleado = new Empleado();
-                    if (objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar) != null) {
+                    Empleado empleadoEncontrado=objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar);
+                    if (empleadoEncontrado != null) {
                         objTransporte = new Transporte();
                         if (!transportes.isEmpty()) {
-                            objAlimentacion = new Alimentacion();
-                            objHospedaje = new Hospedaje();
-                            System.out.println("El id del empleado es: " + objEmpleado.getId());
+                            System.out.println("El id del empleado es: " + empleadoEncontrado.getId());
                             System.out.println("Los datos de sus viajes son: \n");
                             System.out.println("Datos transporte:");
+                            objAlimentacion = new Alimentacion();
+                            objHospedaje = new Hospedaje();
                             objTransporte.buscarTransporte(transportes, idEmpleadoBuscar).mostrarTransporte(transportes);
                             System.out.println("\nDatos Alimentacion: ");
                             objAlimentacion.buscarAlimentacion(alimentos, idEmpleadoBuscar).mostrarAlimentacion(alimentos);

@@ -116,7 +116,7 @@ public class Alimentacion {
 
     public void mostrarAlimentacion(ArrayList<Alimentacion> alimentaciones) {
         for (Alimentacion alimentacion : alimentaciones) {
-            System.out.println("\nLugar alimentación: " + alimentacion.nombreEstablecimiento
+            System.out.println("Lugar alimentación: " + alimentacion.nombreEstablecimiento
                     + "\nTipo comida: " + alimentacion.tipoComida
                     + "\nCosto: " + alimentacion.costoComida
                     + "\nFecha Comida: " + alimentacion.fechaAlimentacion

@@ -129,7 +129,7 @@ public class Hospedaje {
     public void mostrarHospedaje(ArrayList<Hospedaje> hospedajes) {
 
         for (Hospedaje hospedaje : hospedajes) {
-            System.out.println("\nLugar de Hospedaje: " + hospedaje.nombre
+            System.out.println("Lugar de Hospedaje: " + hospedaje.nombre
                     + "\nCosto: " + hospedaje.costo
                     + "\nFecha Ingreso: " + hospedaje.fechaIngreso
                     + "\nFecha Salida: " + hospedaje.fechaSalida

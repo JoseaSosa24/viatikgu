@@ -101,7 +101,7 @@ public class Transporte {
         Scanner read = new Scanner(System.in);
         System.out.print("Ingrese el tipo de transporte: ");
         this.tipoTransporte = read.next();
-        System.out.print("Ingrese el costo del trasnporte: ");
+        System.out.print("Ingrese el costo del transporte: ");
         this.costoTransporte = read.nextDouble();
         System.out.print("Ingrese la fecha de salida: ");
         this.fechaSalida = read.next();
@@ -111,7 +111,7 @@ public class Transporte {
         this.ciudadOrigen = read.next();
         System.out.print("Ingrese la ciudad de Destino: ");
         this.ciudadDestino = read.next();
-        System.out.print("Ingrese si el destino es nacional o internacional");
+        System.out.print("Ingrese si el destino es Nacional o Internacional: ");
         this.alcanceTransporte = read.next();
 
     }
