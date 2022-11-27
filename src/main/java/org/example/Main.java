@@ -21,12 +21,12 @@ public class Main {
         Hospedaje objHospedaje;
 
         //Datos de prueba
-        Empleado e1 = new Empleado("1", "Carly", "Kaines", "BackDeveloper", "Junior", 675331);
-        Empleado e2 = new Empleado("2", "Wildon", "Sapson", "FronDeveloper", "Junior", 685973);
-        Empleado e3 = new Empleado("3", "Nanice", "Mascall", "FronDeveloper", "Senior", 19046);
-        Empleado e4 = new Empleado("4", "Garry", "Wooffitt", "Desarrollador", "Junior", 768036);
-        Empleado e5 = new Empleado("5", "Tina", "Lyndon", "Desarrollador", "Junior", 203358);
-        Empleado e6 = new Empleado("6", "Kellyann", "Ledward", "FronDeveloper", "Junior", 582416);
+        Empleado e1 = new Empleado("1", "Carly", "Kaines", "BackDeveloper", "JUNIOR", 1000000);
+        Empleado e2 = new Empleado("2", "Wildon", "Sapson", "FronDeveloper", "SENIOR", 685973);
+        Empleado e3 = new Empleado("3", "Nanice", "Mascall", "FronDeveloper", "SENIOR", 19046);
+        Empleado e4 = new Empleado("4", "Garry", "Wooffitt", "Desarrollador", "JUNIOR", 768036);
+        Empleado e5 = new Empleado("5", "Tina", "Lyndon", "Desarrollador", "JUNIOR", 203358);
+        Empleado e6 = new Empleado("6", "Kellyann", "Ledward", "FronDeveloper", "JUNIOR", 582416);
         empleados.add(e1);
         empleados.add(e2);
         empleados.add(e3);
@@ -47,7 +47,8 @@ public class Main {
                     1. Registrar empleado\s
                     2. Registrar viajes (transporte, hospedaje, alimentación)\s
                     3. Ver empleados\s
-                    4. Ver viajes de un empleado
+                    4. Ver viajes de un empleado (trasporte, hospedaje, alimentacion)\s
+                    5. Buscar un empleado\s
                     0. Salir\s""");
             option = read.nextInt();
 
@@ -73,7 +74,8 @@ public class Main {
                     System.out.print("Ingrese el id del empleado para asignarle viaticos: ");
                     String idEmpleado = read.next();
                     objEmpleado = new Empleado();
-                    if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
+                    Empleado empleadoEncontrado = objEmpleado.buscarEmpleado(empleados, idEmpleado);
+                    if ( empleadoEncontrado != null) {
                         //boolean banderaAlimentacion = false, banderaHospedaje = false, banderaTrasnporte = false;
                         int contTransporte = 0, contAlimentacion = 0, contHospedaje = 0;
 
@@ -135,6 +137,9 @@ public class Main {
                                     hospedajes.add(objHospedaje);
                                     contHospedaje ++;
                                     break;
+                                case 4:
+
+                                    break;
 
                                 default:
                                     System.out.println("Opción no valida");
@@ -142,6 +147,31 @@ public class Main {
 
 
                         } while ((optionTravel != 0) || ((contTransporte < contHospedaje) || (contHospedaje < contAlimentacion) || (contTransporte < contAlimentacion)));
+                        objTransporte = new Transporte();
+                        objHospedaje = new Hospedaje();
+                        objAlimentacion = new Alimentacion();
+                        Transporte transporte = objTransporte.buscarTransporte(transportes, idEmpleado);
+                        empleadoEncontrado.mostrarEmpleado();
+                        System.out.println(transporte.getAlcanceTransporte());
+                        System.out.println(empleadoEncontrado.getCargo());
+
+                        if(empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")){
+                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo()+ (0.2 * empleadoEncontrado.getSueldo())* contTransporte);
+                            System.out.println("Se le dará un bono del 20% al analista junior por viaje nacional");
+
+                        }else if (empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")){
+                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo()+ (0.4 * empleadoEncontrado.getSueldo()) * contTransporte);
+                            System.out.println("Se le dará un bono del 40% al analista junior por viaje internacional");
+
+                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")) {
+                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.3 * empleadoEncontrado.getSueldo()) * contTransporte);
+                            System.out.println("Se le dará un bono del 30% al analista senior por viaje nacional");
+
+                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")) {
+                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.5 * empleadoEncontrado.getSueldo()) * contTransporte);
+                            System.out.println("Se le dará un bono del 50% al analista senior por viaje internacional");
+
+                        }
 
                     } else {
                         System.out.println("\nEl empleado no existe, NO se le puede asignar viaticos\n");
@@ -159,7 +189,7 @@ public class Main {
                     System.out.print("\nIngrese el id del empleado a mostrar viajes: ");
                     String idEmpleadoBuscar = read.next();
                     objEmpleado = new Empleado();
-                    Empleado empleadoEncontrado = objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar);
+                    empleadoEncontrado = objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar);
                     if (empleadoEncontrado != null) {
                         objTransporte = new Transporte();
                         if (!transportes.isEmpty()) {
