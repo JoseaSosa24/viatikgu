@@ -105,16 +105,16 @@ public class Transporte {
     }
 
 
-    public Alimentacion buscarTransporte(ArrayList<Alimentacion> transportes, String empleadoABuscar) {
-        Alimentacion empleadoEncontrado = null;
+    public Transporte buscarTransporte(ArrayList<Transporte> transportes, String empleadoABuscar) {
+        Transporte empleadoEncontrado = null;
 
-        for (Alimentacion alimentacion : transportes) {
-            if (alimentacion.getIdEmpleado().equals(empleadoABuscar)) {
-                empleadoEncontrado = alimentacion;
+        for (Transporte transporte : transportes) {
+            if (transporte.getIdEmpleado().equals(empleadoABuscar)) {
+                empleadoEncontrado= transporte;
                 break;
             }
         }
-        return empleadoEncontrado;
+       return empleadoEncontrado;
     }
     public void mostrarTransporte(ArrayList<Transporte> transportes) {
         for (Transporte transporte : transportes) {

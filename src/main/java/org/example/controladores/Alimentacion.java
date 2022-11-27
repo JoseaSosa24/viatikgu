@@ -96,6 +96,26 @@ public class Alimentacion {
         return empleadoEncontrado;
     }
 
+    public void mostrarAlimentacion() {
+        System.out.println("\nLugar alimentación: " + this.nombreEstablecimiento
+                + "\nTipo comida: " + this.tipoComida
+                + "\nCosto: " + this.costoComida
+                + "\nFecha Comida: " + this.fechaAlimentacion
+                + "\nDirección: " + this.direccionEstablecimiento + "\n"
+        );
+    }
+
+    public void mostrarAlimentacion(ArrayList<Alimentacion> alimentaciones) {
+        for (Alimentacion alimentacion : alimentaciones) {
+            System.out.println("\nLugar alimentación: " + this.nombreEstablecimiento
+                    + "\nTipo comida: " + this.tipoComida
+                    + "\nCosto: " + this.costoComida
+                    + "\nFecha Comida: " + this.fechaAlimentacion
+                    + "\nDirección: " + this.direccionEstablecimiento + "\n"
+            );
+        }
+
+    }
 
 }
 

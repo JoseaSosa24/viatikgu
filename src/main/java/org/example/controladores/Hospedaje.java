@@ -107,4 +107,28 @@ public class Hospedaje {
         }
         return empleadoEncontrado;
     }
+
+    public void mostrarHospedaje() {
+        System.out.println("\nLugar de Hospedaje: " + this.nombre
+                + "\nCosto: " + this.costo
+                + "\nFecha Ingreso: " + this.fechaIngreso
+                + "\nFecha Salida: " + this.fechaSalida
+                + "\nDirección: " + this.direccion
+                + "\nCiudad: " + this.ciudad + "\n"
+        );
+    }
+
+    public void mostrarHospedaje(ArrayList<Hospedaje> hospedajes) {
+
+        for (Hospedaje hospedaje : hospedajes) {
+            System.out.println("\nLugar de Hospedaje: " + this.nombre
+                    + "\nCosto: " + this.costo
+                    + "\nFecha Ingreso: " + this.fechaIngreso
+                    + "\nFecha Salida: " + this.fechaSalida
+                    + "\nDirección: " + this.direccion
+                    + "\nCiudad: " + this.ciudad + "\n"
+            );
+        }
+    }
+
 }

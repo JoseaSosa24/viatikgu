@@ -131,7 +131,9 @@ public class Main {
                     String idEmpleadoBuscar = read.next();
                     if(objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar) != null){
                         System.out.println("El id del empleado es: " + objEmpleado.getId());
-                        objTransporte.mostrarTransporte(transportes);
+                        System.out.println("Sus viajes son: \n");
+                        objTransporte.buscarTransporte(transportes,idEmpleadoBuscar).mostrarTransporte();
+                        objAlimentacion.buscarAlimentacion(alimentos,idEmpleadoBuscar).mostrarAlimentacion();
 
 
                     }
