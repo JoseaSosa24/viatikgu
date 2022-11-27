@@ -17,6 +17,15 @@ public class Hospedaje {
     public Hospedaje() {
     }
 
+    public Hospedaje(String nombre, double costo, String fechaIngreso, String fechaSalida, String direccion, String ciudad, String idEmpleado) {
+        this.nombre = nombre;
+        this.costo = costo;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+        this.idEmpleado = idEmpleado;
+    }
 
     public String getIdEmpleado() {
         return idEmpleado;
@@ -92,7 +101,7 @@ public class Hospedaje {
         this.fechaSalida = read.next();
         System.out.print("Ingrese la direccion del lugar de hospedaje: ");
         this.direccion = read.next();
-        System.out.println("Ingrese la ciudad del lugar de hospedaje");
+        System.out.print("Ingrese la ciudad del lugar de hospedaje: ");
         this.ciudad = read.next();
     }
 

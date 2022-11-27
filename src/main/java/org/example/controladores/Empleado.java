@@ -1,6 +1,7 @@
 package org.example.controladores;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Empleado {
@@ -13,6 +14,15 @@ public class Empleado {
     private String rango;
 
     public Empleado() {
+    }
+
+    public Empleado(String nombre, String apellido, String id, String cargo, double sueldo, String rango) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.id = id;
+        this.cargo = cargo;
+        this.sueldo = sueldo;
+        this.rango = rango;
     }
 
     public String getNombre() {
@@ -95,6 +105,7 @@ public class Empleado {
         }
         return empleadoEncontrado;
     }
+
 
     public void mostrarEmpleado() {
         System.out.println("Id: " + this.id

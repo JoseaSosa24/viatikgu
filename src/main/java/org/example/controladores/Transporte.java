@@ -24,6 +24,18 @@ public class Transporte {
     public Transporte() {
     }
 
+
+    public Transporte(String tipoTransporte, double costoTransporte, String fechaSalida, String fechaRegreso, String ciudadOrigen, String ciudadDestino, String alcanceTransporte, String idEmpleado) {
+        this.tipoTransporte = tipoTransporte;
+        this.costoTransporte = costoTransporte;
+        this.fechaSalida = fechaSalida;
+        this.fechaRegreso = fechaRegreso;
+        this.ciudadOrigen = ciudadOrigen;
+        this.ciudadDestino = ciudadDestino;
+        this.alcanceTransporte = alcanceTransporte;
+        this.idEmpleado = idEmpleado;
+    }
+
     public String getTipoTransporte() {
         return tipoTransporte;
     }

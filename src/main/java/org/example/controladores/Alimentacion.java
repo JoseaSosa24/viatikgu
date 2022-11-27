@@ -16,6 +16,15 @@ public class Alimentacion {
     public Alimentacion() {
     }
 
+    public Alimentacion(String nombreEstablecimiento, String tipoComida, double costoComida, String fechaAlimentacion, String direccionEstablecimiento, String idEmpleado) {
+        this.nombreEstablecimiento = nombreEstablecimiento;
+        this.tipoComida = tipoComida;
+        this.costoComida = costoComida;
+        this.fechaAlimentacion = fechaAlimentacion;
+        this.direccionEstablecimiento = direccionEstablecimiento;
+        this.idEmpleado = idEmpleado;
+    }
+
     public String getIdEmpleado() {
         return idEmpleado;
     }
@@ -72,15 +81,15 @@ public class Alimentacion {
 
     public void agregarAlimentacion() {
         Scanner read = new Scanner(System.in);
-        System.out.print("Digite el nombre del establecimiento ");
+        System.out.print("\nDigite el nombre del establecimiento: ");
         this.nombreEstablecimiento = read.next();
-        System.out.print("Ingrese el tipo de comida");
+        System.out.print("Ingrese el tipo de comida: ");
         this.tipoComida = read.next();
-        System.out.print("Ingrese el costo de la comida");
+        System.out.print("Ingrese el costo de la comida: ");
         this.costoComida = read.nextDouble();
-        System.out.print("Ingrese la fecha de la comida");
+        System.out.print("Ingrese la fecha de la comida: ");
         this.fechaAlimentacion = read.next();
-        System.out.print("Ingrese la direccion del establecimiento");
+        System.out.print("Ingrese la direccion del establecimiento: ");
         this.direccionEstablecimiento = read.next();
     }
 
@@ -115,6 +124,18 @@ public class Alimentacion {
             );
         }
 
+    }
+
+    public void mostrarAlimentacion(ArrayList<Alimentacion> alimentaciones, String idEmpleadoViajero) {
+        for (Alimentacion alimentacion : alimentaciones) {
+            if (alimentacion.getIdEmpleado().equals(idEmpleadoViajero))
+                System.out.println("\nLugar alimentación: " + this.nombreEstablecimiento
+                        + "\nTipo comida: " + this.tipoComida
+                        + "\nCosto: " + this.costoComida
+                        + "\nFecha Comida: " + this.fechaAlimentacion
+                        + "\nDirección: " + this.direccionEstablecimiento + "\n"
+                );
+        }
     }
 
 }
