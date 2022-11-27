@@ -15,26 +15,24 @@ public class Main {
         ArrayList<Alimentacion> alimentos = new ArrayList<>();
         ArrayList<Hospedaje> hospedajes = new ArrayList<>();
         ArrayList<Transporte> transportes = new ArrayList<>();
-        Alimentacion objAlimentacion ;
-        Transporte objTransporte ;
-        Empleado objEmpleado ;
-        Hospedaje objHospedaje ;
+        Alimentacion objAlimentacion;
+        Transporte objTransporte;
+        Empleado objEmpleado;
+        Hospedaje objHospedaje;
 
         //Datos de prueba
-        Empleado e1 =new Empleado("1", "Carly", "Kaines", "BackDeveloper", "Junior", 675331);
-        Empleado e2 =new Empleado("2", "Wildon", "Sapson", "FronDeveloper", "Junior", 685973);
-        Empleado e3 =new Empleado("3", "Nanice", "Mascall", "FronDeveloper", "Senior", 19046);
-        Empleado e4 =new Empleado("4","Garry", "Wooffitt", "Desarrollador", "Junior", 768036);
-        Empleado e5 =new Empleado("5","Tina", "Lyndon", "Desarrollador", "Junior", 203358);
-        Empleado e6 =new Empleado("6","Kellyann", "Ledward", "FronDeveloper", "Junior", 582416);
+        Empleado e1 = new Empleado("1", "Carly", "Kaines", "BackDeveloper", "Junior", 675331);
+        Empleado e2 = new Empleado("2", "Wildon", "Sapson", "FronDeveloper", "Junior", 685973);
+        Empleado e3 = new Empleado("3", "Nanice", "Mascall", "FronDeveloper", "Senior", 19046);
+        Empleado e4 = new Empleado("4", "Garry", "Wooffitt", "Desarrollador", "Junior", 768036);
+        Empleado e5 = new Empleado("5", "Tina", "Lyndon", "Desarrollador", "Junior", 203358);
+        Empleado e6 = new Empleado("6", "Kellyann", "Ledward", "FronDeveloper", "Junior", 582416);
         empleados.add(e1);
         empleados.add(e2);
         empleados.add(e3);
         empleados.add(e4);
         empleados.add(e5);
         empleados.add(e6);
-
-
 
 
         Scanner read = new Scanner(System.in);
@@ -70,11 +68,12 @@ public class Main {
 
                     do {
                         System.out.println("""
-                              \n1. Ingresar transporte
+                                1. Ingresar Transporte
                                 2. Ingresar Alimentacion
-                                3. Ingresar hospedaje
+                                3. Ingresar Hospedaje
                                 0. Salir""");
                         optionTravel = read.nextInt();
+
 
                         switch (optionTravel) {
 
@@ -87,7 +86,7 @@ public class Main {
                                 String idEmpleado;
                                 System.out.print("Ingrese el documento del empleado: ");
                                 idEmpleado = read.next();
-                                objEmpleado=new Empleado();
+                                objEmpleado = new Empleado();
                                 if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
                                     objTransporte = new Transporte();
                                     objTransporte.setIdEmpleado(idEmpleado);
@@ -96,16 +95,15 @@ public class Main {
 
                                 } else {
                                     System.out.println("El empleado no existe, no se le puede asignar" +
-                                            " trasnporte");
+                                            " transporte");
                                 }
-
                                 break;
 
                             case 2:
                                 System.out.println("\n**** Ingresando alimentación ****\n");
                                 System.out.print("Ingrese el documento del empleado: ");
                                 idEmpleado = read.next();
-                                objEmpleado=new Empleado();
+                                objEmpleado = new Empleado();
                                 if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
                                     objAlimentacion = new Alimentacion();
                                     objAlimentacion.setIdEmpleado(idEmpleado);
@@ -116,14 +114,13 @@ public class Main {
                                     System.out.println("El empleado no existe, no se le puede asignar" +
                                             " alimentacion");
                                 }
-
                                 break;
 
                             case 3:
                                 System.out.println("\n**** Ingresando Hospedaje ****\n");
                                 System.out.print("Ingrese el documento del empleado: ");
                                 idEmpleado = read.next();
-                                objEmpleado=new Empleado();
+                                objEmpleado = new Empleado();
                                 if (objEmpleado.buscarEmpleado(empleados, idEmpleado) != null) {
                                     objHospedaje = new Hospedaje();
                                     objHospedaje.setIdEmpleado(idEmpleado);
@@ -138,28 +135,26 @@ public class Main {
 
                             default:
                                 System.out.println("Opción no valida");
-
                         }
-
                     } while (optionTravel != 0);
 
                     break;
 
                 case 3:
                     System.out.println("\n-------MOSTRANDO EMPLEADOS----------");
-                    objEmpleado=new Empleado();
+                    objEmpleado = new Empleado();
                     objEmpleado.mostrarEmpleado(empleados);
                     System.out.println("\n------------------------------------\n");
                     break;
                 case 4:
-                    System.out.print("Ingrese el id del empleado: ");
+                    System.out.print("\nIngrese el id del empleado: ");
                     String idEmpleadoBuscar = read.next();
-                    objEmpleado=new Empleado();
+                    objEmpleado = new Empleado();
                     if (objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar) != null) {
-                        objTransporte=new Transporte();
+                        objTransporte = new Transporte();
                         if (!transportes.isEmpty()) {
-                            objAlimentacion=new Alimentacion();
-                            objHospedaje=new Hospedaje();
+                            objAlimentacion = new Alimentacion();
+                            objHospedaje = new Hospedaje();
                             System.out.println("El id del empleado es: " + objEmpleado.getId());
                             System.out.println("Los datos de sus viajes son: \n");
                             System.out.println("Datos transporte:");
