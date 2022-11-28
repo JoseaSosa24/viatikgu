@@ -186,7 +186,7 @@ public class Main {
                                 System.out.print("\n¡Los viaticos(transporte, hospedaje, alimentación) de este viaje para el empleado " + empleadoEncontrado.getNombre() + " han sido agregados extitosamente!\n");
                                 System.out.print("\n¿Desea Registrarle otro viaje a este empleado? 1:SÍ 0:NO: ");
                                 optionTravel = read.nextInt();
-                                if (optionTravel==1){
+                                if (optionTravel == 1) {
                                     swViajes = 0;
                                     banderaTransporte = false;
                                     banderaAlimentacion = false;
@@ -195,9 +195,7 @@ public class Main {
 
                             }
 
-                        } while (optionTravel != 0 || !banderaTransporte && !banderaAlimentacion  && !banderaHospedaje);
-
-
+                        } while (optionTravel != 0 || !banderaTransporte && !banderaAlimentacion && !banderaHospedaje);
 //                        while ((optionTravel != 0) || ((contTransporte < contHospedaje) || (contHospedaje < contAlimentacion) || (contTransporte < contAlimentacion) || (contHospedaje < contTransporte) || (contAlimentacion < contHospedaje)));
 
                     } else {
@@ -216,13 +214,13 @@ public class Main {
                     System.out.print("\nIngrese el id del empleado a mostrar viajes: ");
                     String idEmpleadoBuscar = read.next();
                     objEmpleado = new Empleado();
-                    objTransporte =new Transporte();
-                    Empleado empleado=objEmpleado.buscarEmpleado(empleados,idEmpleadoBuscar);
+                    objTransporte = new Transporte();
+                    Empleado empleado = objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar);
                     Transporte empleadoTransporte;
                     empleadoTransporte = objTransporte.buscarTransporte(transportes, idEmpleadoBuscar);
-                    if (empleado!= null) {
+                    if (empleado != null) {
                         objTransporte = new Transporte();
-                        if (empleadoTransporte!=null) {
+                        if (empleadoTransporte != null) {
                             System.out.println("El id del empleado es: " + empleadoTransporte.getIdEmpleado());
                             System.out.println("Los datos de sus viajes son: \n");
                             System.out.println("Datos transporte:");
@@ -241,15 +239,30 @@ public class Main {
                     }
                     break;
                 case 5:
+                    System.out.print("\nIngrese el id del empleado a buscar: ");
+                    String idBuscado = read.next();
+                    objEmpleado = new Empleado();
+                    if (objEmpleado.buscarEmpleado(empleados, idBuscado) != null) {
+                        System.out.print("¡EMPLEADO ECONTRADO!, SUS DATOS SON:\n");
+                        objEmpleado.buscarEmpleado(empleados, idBuscado).mostrarEmpleado();
+                    } else {
+                        System.err.print("\n¡EL EMPLEADO NO EXISTE!\n");
+                        System.out.println("\n-->Presione ENTER para continuar<--");
+                        System.in.read();
 
+                    }
                     break;
                 default:
-                    System.out.println("Opcion no valida");
+                    System.out.println("Opción no valida");
             }
 
 
         } while (option != 0);
 
+    }
 
+    public void esperarEnter() throws IOException{
+        System.out.println("\n-->Presione ENTER para continuar<--");
+        System.in.read();
     }
 }
