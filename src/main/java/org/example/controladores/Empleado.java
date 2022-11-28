@@ -5,12 +5,12 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Empleado {
+
+    String black = "\033[30m", red = "\033[31m", green = "\033[32m", yellow = "\033[33m", blue = "\033[34m",
+            cyan = "\033[36m", reset = "\u001B[0m", purple = "\u001B[35m";
+
     //ATRIBUTOS
-    private String id;
-    private String nombre;
-    private String apellido;
-    private String cargo;
-    private String rango;
+    private String id,nombre,apellido,cargo,rango;
     private double sueldo;
 
     public Empleado() {
@@ -108,23 +108,23 @@ public class Empleado {
 
 
     public void mostrarEmpleado() {
-        System.out.println("Id: " + this.id
-                + "\nNombre: " + this.nombre
-                + "\nApellido: " + this.apellido
-                + "\nCargo: " + this.cargo
-                + "\nRango: " + this.rango
-                + "\nSueldo: " + this.sueldo
+        System.out.println(this.green+"Id: " +this.reset + this.id
+                + this.green+"\nNombre: " +this.reset + this.nombre
+                + this.green+"\nApellido: " +this.reset + this.apellido
+                + this.green+"\nCargo: " +this.reset + this.cargo
+                + this.green+"\nRango: " +this.reset + this.rango
+                + this.green+"\nSueldo: " +this.reset + this.sueldo
         );
     }
 
     public void mostrarEmpleado(ArrayList<Empleado> empleados) {
         for (Empleado empleado : empleados) {
-            System.out.println("\nId: " + empleado.id
-                    + "\nNombre: " + empleado.nombre
-                    + "\nApellido: " + empleado.apellido
-                    + "\nCargo: " + empleado.cargo
-                    + "\nRango: " + empleado.rango
-                    + "\nSueldo: " + empleado.sueldo);
+            System.out.println(this.green+"\nId: "+this.reset + empleado.id
+                    + this.green+"\nNombre: "+this.reset + empleado.nombre
+                    + this.green+"\nApellido: " + this.reset +empleado.apellido
+                    + this.green+"\nCargo: " + this.reset +empleado.cargo
+                    + this.green+"\nRango: " + this.reset +empleado.rango
+                    + this.green+"\nSueldo: " + this.reset +empleado.sueldo);
         }
     }
 
@@ -135,19 +135,19 @@ public class Empleado {
             case "JUNIOR":
                 if (empleadoTransporte.getAlcanceTransporte().equals("NACIONAL")){
                     empleado.setSueldo(empleado.getSueldo() + (0.2 * empleado.getSueldo()));
-                    System.out.println("Se le dará un bono del 20% al "+empleado.cargo+" junior por viaje nacional\n");
+                    System.out.println(this.green+"Se le dará un bono del 20% al "+empleado.cargo+" junior por viaje nacional\n"+this.reset);
                 }else if (empleadoTransporte.getAlcanceTransporte().equals("INTERNACIONAL")){
                     empleado.setSueldo(empleado.getSueldo() + (0.4 * empleado.getSueldo()));
-                    System.out.println("Se le dará un bono del 40% al "+empleado.cargo+" junior por viaje internacional\n");
+                    System.out.println(this.green+"Se le dará un bono del 40% al "+empleado.cargo+" junior por viaje internacional\n"+this.reset);
                 }
                 break;
             case "SENIOR":
                 if (empleadoTransporte.getAlcanceTransporte().equals("NACIONAL")){
                     empleado.setSueldo(empleado.getSueldo() + (0.3 * empleado.getSueldo()));
-                    System.out.println("Se le dará un bono del 30% al "+empleado.cargo+ " SENIOR por viaje nacional\n");
+                    System.out.println(this.green+"Se le dará un bono del 30% al "+empleado.cargo+ " SENIOR por viaje nacional\n"+this.reset);
                 }else if (empleadoTransporte.getAlcanceTransporte().equals("INTERNACIONAL")){
                     empleado.setSueldo(empleado.getSueldo() + (0.5 * empleado.getSueldo()));
-                    System.out.println("Se le dará un bono del 50% al " +empleado.cargo+" SENIOR por viaje internacional\n");
+                    System.out.println(this.green+"Se le dará un bono del 50% al " +empleado.cargo+" SENIOR por viaje internacional\n"+this.reset);
                 }
                 break;
 
