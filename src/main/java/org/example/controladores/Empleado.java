@@ -126,5 +126,7 @@ public class Empleado {
                     + "\nRango: " + empleado.rango
                     + "\nSueldo: " + empleado.sueldo);
         }
+
+
     }
 }

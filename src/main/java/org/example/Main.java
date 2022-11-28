@@ -216,11 +216,14 @@ public class Main {
                     System.out.print("\nIngrese el id del empleado a mostrar viajes: ");
                     String idEmpleadoBuscar = read.next();
                     objEmpleado = new Empleado();
-                    empleadoEncontrado = objEmpleado.buscarEmpleado(empleados, idEmpleadoBuscar);
-                    if (empleadoEncontrado != null) {
+                    objTransporte =new Transporte();
+                    Empleado empleado=objEmpleado.buscarEmpleado(empleados,idEmpleadoBuscar);
+                    Transporte empleadoTransporte;
+                    empleadoTransporte = objTransporte.buscarTransporte(transportes, idEmpleadoBuscar);
+                    if (empleado!= null) {
                         objTransporte = new Transporte();
-                        if (!transportes.isEmpty()) {
-                            System.out.println("El id del empleado es: " + empleadoEncontrado.getId());
+                        if (empleadoTransporte!=null) {
+                            System.out.println("El id del empleado es: " + empleadoTransporte.getIdEmpleado());
                             System.out.println("Los datos de sus viajes son: \n");
                             System.out.println("Datos transporte:");
                             objAlimentacion = new Alimentacion();
@@ -237,7 +240,9 @@ public class Main {
                         System.out.println("\nEl empleado NO existe\n");
                     }
                     break;
+                case 5:
 
+                    break;
                 default:
                     System.out.println("Opcion no valida");
             }
