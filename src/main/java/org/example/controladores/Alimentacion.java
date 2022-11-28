@@ -17,11 +17,11 @@ public class Alimentacion {
     }
 
     public Alimentacion(String nombreEstablecimiento, String tipoComida, double costoComida, String fechaAlimentacion, String direccionEstablecimiento, String idEmpleado) {
-        this.nombreEstablecimiento = nombreEstablecimiento;
-        this.tipoComida = tipoComida;
+        this.nombreEstablecimiento = nombreEstablecimiento.toUpperCase();
+        this.tipoComida = tipoComida.toUpperCase();
         this.costoComida = costoComida;
-        this.fechaAlimentacion = fechaAlimentacion;
-        this.direccionEstablecimiento = direccionEstablecimiento;
+        this.fechaAlimentacion = fechaAlimentacion.toUpperCase();
+        this.direccionEstablecimiento = direccionEstablecimiento.toUpperCase();
         this.idEmpleado = idEmpleado;
     }
 
@@ -82,15 +82,15 @@ public class Alimentacion {
     public void agregarAlimentacion() {
         Scanner read = new Scanner(System.in);
         System.out.print("\nDigite el nombre del establecimiento: ");
-        this.nombreEstablecimiento = read.next();
+        this.nombreEstablecimiento = read.next().toUpperCase();
         System.out.print("Ingrese el tipo de comida: ");
-        this.tipoComida = read.next();
+        this.tipoComida = read.next().toUpperCase();
         System.out.print("Ingrese el costo de la comida: ");
         this.costoComida = read.nextDouble();
         System.out.print("Ingrese la fecha de la comida: ");
-        this.fechaAlimentacion = read.next();
+        this.fechaAlimentacion = read.next().toUpperCase();
         System.out.print("Ingrese la direccion del establecimiento: ");
-        this.direccionEstablecimiento = read.next();
+        this.direccionEstablecimiento = read.next().toUpperCase();
     }
 
     public Alimentacion buscarAlimentacion(ArrayList<Alimentacion> alimentaciones, String empleadoABuscar) {

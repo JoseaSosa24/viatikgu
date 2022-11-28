@@ -17,12 +17,12 @@ public class Hospedaje {
     }
 
     public Hospedaje(String nombre, double costo, String fechaIngreso, String fechaSalida, String direccion, String ciudad, String idEmpleado) {
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
         this.costo = costo;
         this.fechaIngreso = fechaIngreso;
         this.fechaSalida = fechaSalida;
-        this.direccion = direccion;
-        this.ciudad = ciudad;
+        this.direccion = direccion.toUpperCase();
+        this.ciudad = ciudad.toUpperCase();
         this.idEmpleado = idEmpleado;
     }
 
@@ -91,7 +91,7 @@ public class Hospedaje {
     public void agregarHospedaje() {
         Scanner read = new Scanner(System.in);
         System.out.print("Ingrese el nombre del lugar de hospedaje: ");
-        this.nombre = read.next();
+        this.nombre = read.next().toUpperCase();
         System.out.print("Ingrese el costo del lugar de hospedaje: ");
         this.costo = read.nextDouble();
         System.out.print("Ingrese la fecha de ingreso: ");
@@ -99,9 +99,9 @@ public class Hospedaje {
         System.out.print("Ingrese la fecha de salida: ");
         this.fechaSalida = read.next();
         System.out.print("Ingrese la direccion del lugar de hospedaje: ");
-        this.direccion = read.next();
+        this.direccion = read.next().toUpperCase();
         System.out.print("Ingrese la ciudad del lugar de hospedaje: ");
-        this.ciudad = read.next();
+        this.ciudad = read.next().toUpperCase();
     }
 
     public Hospedaje buscarHospedaje(ArrayList<Hospedaje> hospedajes, String empleadoABuscar) {

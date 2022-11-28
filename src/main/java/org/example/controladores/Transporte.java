@@ -100,19 +100,19 @@ public class Transporte {
     public void agregarTransporte() {
         Scanner read = new Scanner(System.in);
         System.out.print("Ingrese el tipo de transporte: ");
-        this.tipoTransporte = read.next();
+        this.tipoTransporte = read.next().toUpperCase();
         System.out.print("Ingrese el costo del transporte: ");
         this.costoTransporte = read.nextDouble();
         System.out.print("Ingrese la fecha de salida: ");
-        this.fechaSalida = read.next();
+        this.fechaSalida = read.next().toUpperCase();
         System.out.print("Ingrese la fecha de regreso: ");
-        this.fechaRegreso = read.next();
+        this.fechaRegreso = read.next().toUpperCase();
         System.out.print("Ingrese la ciudad de salida: ");
-        this.ciudadOrigen = read.next();
+        this.ciudadOrigen = read.next().toUpperCase();
         System.out.print("Ingrese la ciudad de Destino: ");
-        this.ciudadDestino = read.next();
+        this.ciudadDestino = read.next().toUpperCase();
         System.out.print("Ingrese si el destino es Nacional o Internacional: ");
-        this.alcanceTransporte = read.next();
+        this.alcanceTransporte = read.next().toUpperCase();
 
     }
 
