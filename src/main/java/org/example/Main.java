@@ -118,26 +118,8 @@ public class Main {
                                         transportes.add(objTransporte);
                                         banderaTransporte = true;
                                         System.out.println("\n¡Transporte agregado exitosamente!");
-
-
                                         Transporte transporte = objTransporte.buscarTransporte(transportes, idEmpleado);
-                                        if (empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")) {
-                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.2 * empleadoEncontrado.getSueldo()));
-                                            System.out.println("Se le dará un bono del 20% al analista junior por viaje nacional\n");
-
-                                        } else if (empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")) {
-                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.4 * empleadoEncontrado.getSueldo()));
-                                            System.out.println("Se le dará un bono del 40% al analista junior por viaje internacional\n");
-
-                                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")) {
-                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.3 * empleadoEncontrado.getSueldo()));
-                                            System.out.println("Se le dará un bono del 30% al analista senior por viaje nacional\n");
-
-                                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")) {
-                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.5 * empleadoEncontrado.getSueldo()));
-                                            System.out.println("Se le dará un bono del 50% al analista senior por viaje internacional\n");
-
-                                        }
+                                        empleadoEncontrado.calcularBono(transporte,empleadoEncontrado);
                                     }
                                     System.out.println("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
@@ -246,11 +228,11 @@ public class Main {
                         System.out.print("¡EMPLEADO ECONTRADO!, SUS DATOS SON:\n");
                         objEmpleado.buscarEmpleado(empleados, idBuscado).mostrarEmpleado();
                     } else {
-                        System.err.print("\n¡EL EMPLEADO NO EXISTE!\n");
-                        System.out.println("\n-->Presione ENTER para continuar<--");
-                        System.in.read();
+                        System.err.print("¡EL EMPLEADO NO EXISTE!\n");
 
                     }
+                    System.out.println("\n-->Presione ENTER para continuar<--");
+                    System.in.read();
                     break;
                 default:
                     System.out.println("Opción no valida");
