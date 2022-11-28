@@ -126,7 +126,32 @@ public class Empleado {
                     + "\nRango: " + empleado.rango
                     + "\nSueldo: " + empleado.sueldo);
         }
+    }
 
+
+    public void calcularBono(Transporte empleadoTransporte, Empleado empleado) {
+
+        switch (empleado.getRango()){
+            case "JUNIOR":
+                if (empleadoTransporte.getAlcanceTransporte().equals("NACIONAL")){
+                    empleado.setSueldo(empleado.getSueldo() + (0.2 * empleado.getSueldo()));
+                    System.out.println("Se le dará un bono del 20% al "+empleado.cargo+" junior por viaje nacional\n");
+                }else if (empleadoTransporte.getAlcanceTransporte().equals("INTERNACIONAL")){
+                    empleado.setSueldo(empleado.getSueldo() + (0.4 * empleado.getSueldo()));
+                    System.out.println("Se le dará un bono del 40% al "+empleado.cargo+" junior por viaje internacional\n");
+                }
+                break;
+            case "SENIOR":
+                if (empleadoTransporte.getAlcanceTransporte().equals("NACIONAL")){
+                    empleado.setSueldo(empleado.getSueldo() + (0.3 * empleado.getSueldo()));
+                    System.out.println("Se le dará un bono del 30% al "+empleado.cargo+ " SENIOR por viaje nacional\n");
+                }else if (empleadoTransporte.getAlcanceTransporte().equals("INTERNACIONAL")){
+                    empleado.setSueldo(empleado.getSueldo() + (0.5 * empleado.getSueldo()));
+                    System.out.println("Se le dará un bono del 50% al " +empleado.cargo+" SENIOR por viaje internacional\n");
+                }
+                break;
+
+        }
 
     }
 }
