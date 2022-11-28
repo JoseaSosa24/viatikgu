@@ -5,11 +5,13 @@ import org.example.controladores.Empleado;
 import org.example.controladores.Hospedaje;
 import org.example.controladores.Transporte;
 
+
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         ArrayList<Empleado> empleados = new ArrayList<>();
         ArrayList<Alimentacion> alimentos = new ArrayList<>();
@@ -75,9 +77,13 @@ public class Main {
                     String idEmpleado = read.next();
                     objEmpleado = new Empleado();
                     Empleado empleadoEncontrado = objEmpleado.buscarEmpleado(empleados, idEmpleado);
-                    if ( empleadoEncontrado != null) {
-                        //boolean banderaAlimentacion = false, banderaHospedaje = false, banderaTrasnporte = false;
-                        int contTransporte = 0, contAlimentacion = 0, contHospedaje = 0;
+                    if (empleadoEncontrado != null) {
+                        boolean banderaTransporte = false, banderaAlimentacion = false, banderaHospedaje = false;
+//                        int contTransporte = 0, contAlimentacion = 0, contHospedaje = 0;
+                        int swViajes = 0;
+
+                        System.out.println("\nDatos del EMPLEADO: ");
+                        empleadoEncontrado.mostrarEmpleado();
 
                         do {
                             System.out.println("\n**** INGRESANDO VIATICOS ****");
@@ -88,90 +94,111 @@ public class Main {
                                     0. Salir""");
                             optionTravel = read.nextInt();
 
-
                             switch (optionTravel) {
 
                                 case 0:
-                                    if ((contTransporte < contHospedaje) || (contTransporte < contAlimentacion)) {
-                                        System.out.print("\nFalta el registro de los viáticos de Transporte");
+                                    if (banderaTransporte && banderaAlimentacion && banderaHospedaje && swViajes == 1) {
+                                        System.out.println("\nVolviendo al menú principal...");
+                                    } else {
+                                        System.out.println("\nLe faltan viaticos por entrar de este viaje");
                                     }
-
-                                    if((contAlimentacion < contTransporte) || (contAlimentacion < contHospedaje)){
-                                        System.out.print("\nFalta el registro de los viáticos de alimentación");
-                                    }
-
-                                    if ((contHospedaje < contAlimentacion) || (contHospedaje < contTransporte)) {
-                                        System.out.print("\nFalta el registro de los viáticos de Hospedaje");
-                                    }
-
-                                    if((contTransporte == contAlimentacion) && (contAlimentacion == contHospedaje))    {
-                                        System.out.println("Ha elegido salir del programa");
-                                    }
-                                    System.out.println("");
+                                    System.out.println("\n-->Presione ENTER para continuar<--");
+                                    System.in.read();
                                     break;
 
                                 case 1:
-                                    System.out.println("\n**** Ingresando transporte ****\n");
-                                    objTransporte = new Transporte();
-                                    objTransporte.setIdEmpleado(idEmpleado);
-                                    objTransporte.agregarTransporte();
-                                    transportes.add(objTransporte);
-                                    contTransporte ++;
+                                    if (banderaTransporte) {
+                                        System.out.print("Antes de registrar nuevamente un Transporte, debe terminar el registro COMPLETO del viaje actual\n");
+                                    } else {
+                                        swViajes++;
+                                        System.out.println("\n**** Ingresando transporte ****\n");
+                                        objTransporte = new Transporte();
+                                        objTransporte.setIdEmpleado(idEmpleado);
+                                        objTransporte.agregarTransporte();
+                                        transportes.add(objTransporte);
+                                        banderaTransporte = true;
+                                        System.out.println("\n¡Transporte agregado exitosamente!");
 
+
+                                        Transporte transporte = objTransporte.buscarTransporte(transportes, idEmpleado);
+                                        if (empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")) {
+                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.2 * empleadoEncontrado.getSueldo()));
+                                            System.out.println("Se le dará un bono del 20% al analista junior por viaje nacional\n");
+
+                                        } else if (empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")) {
+                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.4 * empleadoEncontrado.getSueldo()));
+                                            System.out.println("Se le dará un bono del 40% al analista junior por viaje internacional\n");
+
+                                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")) {
+                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.3 * empleadoEncontrado.getSueldo()));
+                                            System.out.println("Se le dará un bono del 30% al analista senior por viaje nacional\n");
+
+                                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")) {
+                                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.5 * empleadoEncontrado.getSueldo()));
+                                            System.out.println("Se le dará un bono del 50% al analista senior por viaje internacional\n");
+
+                                        }
+                                    }
+                                    System.out.println("\n-->Presione ENTER para continuar<--");
+                                    System.in.read();
                                     break;
 
                                 case 2:
-                                    System.out.println("\n**** Ingresando Alimentación ****");
-                                    objAlimentacion = new Alimentacion();
-                                    objAlimentacion.setIdEmpleado(idEmpleado);
-                                    objAlimentacion.agregarAlimentacion();
-                                    alimentos.add(objAlimentacion);
-                                    contAlimentacion ++;
+                                    if (banderaAlimentacion) {
+                                        System.out.print("Antes de registrar nuevamente una Alimentación, debe terminar el registro COMPLETO del viaje actual\n");
+                                    } else if (banderaTransporte) {
+                                        System.out.println("\n**** Ingresando Alimentación ****");
+                                        objAlimentacion = new Alimentacion();
+                                        objAlimentacion.setIdEmpleado(idEmpleado);
+                                        objAlimentacion.agregarAlimentacion();
+                                        alimentos.add(objAlimentacion);
+                                        banderaAlimentacion = true;
+                                        System.out.println("\n¡Alimentación agregada exitosamente!");
+                                    } else {
+                                        System.out.print("\nDebe ingresar viaticos de transporte primero");
+                                    }
+                                    System.out.println("\n-->Presione ENTER para continuar<--");
+                                    System.in.read();
                                     break;
 
                                 case 3:
-                                    System.out.println("\n**** Ingresando Hospedaje ****\n");
-                                    objHospedaje = new Hospedaje();
-                                    objHospedaje.setIdEmpleado(idEmpleado);
-                                    objHospedaje.agregarHospedaje();
-                                    hospedajes.add(objHospedaje);
-                                    contHospedaje ++;
+                                    if (banderaHospedaje) {
+                                        System.out.print("Antes de registrar nuevamente un Hospedaje, debe terminar el registro COMPLETO del viaje actual\n");
+                                    } else if (banderaAlimentacion) {
+                                        System.out.println("\n**** Ingresando Hospedaje ****\n");
+                                        objHospedaje = new Hospedaje();
+                                        objHospedaje.setIdEmpleado(idEmpleado);
+                                        objHospedaje.agregarHospedaje();
+                                        hospedajes.add(objHospedaje);
+                                        banderaHospedaje = true;
+//                                    contHospedaje++;
+                                        System.out.println("\n¡Hospedaje agregado exitosamente!");
+                                    } else {
+                                        System.out.print("\nDebe ingresar viaticos de Alimentación primero");
+                                    }
+                                    System.out.println("\n-->Presione ENTER para continuar<--");
+                                    System.in.read();
                                     break;
-                                case 4:
-
-                                    break;
-
                                 default:
-                                    System.out.println("Opción no valida");
+                                    System.out.println("\nOpción no valida\n");
+                            }
+                            if (banderaTransporte && banderaAlimentacion && banderaHospedaje) {
+                                System.out.print("\n¡Los viaticos(transporte, hospedaje, alimentación) de este viaje para el empleado " + empleadoEncontrado.getNombre() + " han sido agregados extitosamente!\n");
+                                System.out.print("\n¿Desea Registrarle otro viaje a este empleado? 1:SÍ 0:NO: ");
+                                optionTravel = read.nextInt();
+                                if (optionTravel==1){
+                                    swViajes = 0;
+                                    banderaTransporte = false;
+                                    banderaAlimentacion = false;
+                                    banderaHospedaje = false;
+                                }
+
                             }
 
+                        } while (optionTravel != 0 || !banderaTransporte && !banderaAlimentacion  && !banderaHospedaje);
 
-                        } while ((optionTravel != 0) || ((contTransporte < contHospedaje) || (contHospedaje < contAlimentacion) || (contTransporte < contAlimentacion)));
-                        objTransporte = new Transporte();
-                        objHospedaje = new Hospedaje();
-                        objAlimentacion = new Alimentacion();
-                        Transporte transporte = objTransporte.buscarTransporte(transportes, idEmpleado);
-                        empleadoEncontrado.mostrarEmpleado();
-                        System.out.println(transporte.getAlcanceTransporte());
-                        System.out.println(empleadoEncontrado.getCargo());
 
-                        if(empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")){
-                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo()+ (0.2 * empleadoEncontrado.getSueldo())* contTransporte);
-                            System.out.println("Se le dará un bono del 20% al analista junior por viaje nacional");
-
-                        }else if (empleadoEncontrado.getRango().equals("JUNIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")){
-                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo()+ (0.4 * empleadoEncontrado.getSueldo()) * contTransporte);
-                            System.out.println("Se le dará un bono del 40% al analista junior por viaje internacional");
-
-                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("NACIONAL")) {
-                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.3 * empleadoEncontrado.getSueldo()) * contTransporte);
-                            System.out.println("Se le dará un bono del 30% al analista senior por viaje nacional");
-
-                        } else if (empleadoEncontrado.getRango().equals("SENIOR") && transporte.getAlcanceTransporte().equals("INTERNACIONAL")) {
-                            empleadoEncontrado.setSueldo(empleadoEncontrado.getSueldo() + (0.5 * empleadoEncontrado.getSueldo()) * contTransporte);
-                            System.out.println("Se le dará un bono del 50% al analista senior por viaje internacional");
-
-                        }
+//                        while ((optionTravel != 0) || ((contTransporte < contHospedaje) || (contHospedaje < contAlimentacion) || (contTransporte < contAlimentacion) || (contHospedaje < contTransporte) || (contAlimentacion < contHospedaje)));
 
                     } else {
                         System.out.println("\nEl empleado no existe, NO se le puede asignar viaticos\n");
