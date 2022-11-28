@@ -179,7 +179,7 @@ public class Main {
 
                             }
 
-                        } while (optionTravel != 0 || !banderaTransporte && !banderaAlimentacion && !banderaHospedaje);
+                        } while (optionTravel != 0 || (banderaTransporte && banderaAlimentacion && banderaHospedaje));
 //                        while ((optionTravel != 0) || ((contTransporte < contHospedaje) || (contHospedaje < contAlimentacion) || (contTransporte < contAlimentacion) || (contHospedaje < contTransporte) || (contAlimentacion < contHospedaje)));
 
                     } else {
