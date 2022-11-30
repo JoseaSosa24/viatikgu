@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Alimentacion {
-
-    private String nombreEstablecimiento;
-    private String tipoComida;
+    String black = "\033[30m", red = "\033[31m", green = "\033[32m", yellow = "\033[33m", blue = "\033[34m", cyan = "\033[36m", reset = "\u001B[0m", purple = "\u001B[35m";
+    private String nombreEstablecimiento, tipoComida, fechaAlimentacion, direccionEstablecimiento, idEmpleado;
     private double costoComida;
-    private String fechaAlimentacion;
-    private String direccionEstablecimiento;
-    private String idEmpleado;
-
 
     public Alimentacion() {
     }
@@ -54,11 +49,13 @@ public class Alimentacion {
     }
 
     public void setCostoComida(double costoComida) {
-        if (costoComida > 0) {
-            this.costoComida = costoComida;
-        } else {
-            System.out.println("Valor invalido, digita de nuevo..");
+        Scanner read = new Scanner(System.in);
+        while (costoComida < 0) {
+            System.out.println(red+"COSTO INVÁLIDO"+reset);
+            System.out.print("Ingrese el costo de la comida: ");
+            costoComida = read.nextDouble();
         }
+        this.costoComida = costoComida;
     }
 
     public String getFechaAlimentacion() {
@@ -82,15 +79,15 @@ public class Alimentacion {
     public void agregarAlimentacion() {
         Scanner read = new Scanner(System.in);
         System.out.print("\nDigite el nombre del establecimiento: ");
-        this.nombreEstablecimiento = read.next().toUpperCase();
+        this.setNombreEstablecimiento(nombreEstablecimiento = read.next().toUpperCase());
         System.out.print("Ingrese el tipo de comida: ");
-        this.tipoComida = read.next().toUpperCase();
+        this.setTipoComida(read.next().toUpperCase());
         System.out.print("Ingrese el costo de la comida: ");
-        this.costoComida = read.nextDouble();
+        this.setCostoComida(read.nextDouble());
         System.out.print("Ingrese la fecha de la comida: ");
-        this.fechaAlimentacion = read.next().toUpperCase();
+        this.setFechaAlimentacion(read.next().toUpperCase());
         System.out.print("Ingrese la direccion del establecimiento: ");
-        this.direccionEstablecimiento = read.next().toUpperCase();
+        this.setDireccionEstablecimiento(read.next().toUpperCase());
     }
 
     public Alimentacion buscarAlimentacion(ArrayList<Alimentacion> alimentaciones, String empleadoABuscar) {
@@ -137,6 +134,7 @@ public class Alimentacion {
                 );
         }
     }
+
 
 }
 

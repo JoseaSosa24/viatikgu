@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Transporte {
+    String black = "\033[30m", red = "\033[31m", green = "\033[32m", yellow = "\033[33m", blue = "\033[34m", cyan = "\033[36m", reset = "\u001B[0m", purple = "\u001B[35m";
     private String tipoTransporte;
     private double costoTransporte;
     private String fechaSalida;
@@ -49,11 +50,15 @@ public class Transporte {
     }
 
     public void setCostoTransporte(double costoTransporte) {
-        if (costoTransporte > 0) {
-            this.costoTransporte = costoTransporte;
-        } else {
-            System.out.println("El valor es invalido..");
+        while (costoTransporte < 0) {
+            Scanner read = new Scanner(System.in);
+            System.out.println(this.red+"COSTO INVÁLIDO"+reset);
+            System.out.print("Ingrese el costo del transporte: ");
+            costoTransporte = read.nextDouble();
         }
+        this.costoTransporte = costoTransporte;
+
+
     }
 
     public String getFechaSalida() {
@@ -93,26 +98,32 @@ public class Transporte {
     }
 
     public void setAlcanceTransporte(String alcanceTransporte) {
-        this.alcanceTransporte = alcanceTransporte;
+        Scanner read = new Scanner(System.in);
+        while (!alcanceTransporte.equals("NACIONAL") && !alcanceTransporte.equals("INTERNACIONAL")) {
+            System.out.println(this.red + "INGRESE UN DESTINO VÁLIDO: NACIONAL o INTERNACIONAL" + this.reset);
+            System.out.print("Ingrese si el destino es Nacional o Internacional: ");
+            alcanceTransporte = read.next().toUpperCase();
+        }
+        this.alcanceTransporte = alcanceTransporte.toUpperCase();
     }
 
     // metodos
     public void agregarTransporte() {
         Scanner read = new Scanner(System.in);
         System.out.print("Ingrese el tipo de transporte: ");
-        this.tipoTransporte = read.next().toUpperCase();
+        this.setTipoTransporte(read.next().toUpperCase());
         System.out.print("Ingrese el costo del transporte: ");
-        this.costoTransporte = read.nextDouble();
+        this.setCostoTransporte(read.nextDouble());
         System.out.print("Ingrese la fecha de salida: ");
-        this.fechaSalida = read.next().toUpperCase();
+        this.setFechaSalida(read.next().toUpperCase());
         System.out.print("Ingrese la fecha de regreso: ");
-        this.fechaRegreso = read.next().toUpperCase();
+        this.setFechaRegreso (read.next().toUpperCase());
         System.out.print("Ingrese la ciudad de salida: ");
-        this.ciudadOrigen = read.next().toUpperCase();
+        this.setCiudadOrigen(read.next().toUpperCase());
         System.out.print("Ingrese la ciudad de Destino: ");
-        this.ciudadDestino = read.next().toUpperCase();
+        this.setCiudadDestino(read.next().toUpperCase());
         System.out.print("Ingrese si el destino es Nacional o Internacional: ");
-        this.alcanceTransporte = read.next().toUpperCase();
+        this.setAlcanceTransporte(read.next().toUpperCase());
 
     }
 
@@ -122,21 +133,22 @@ public class Transporte {
 
         for (Transporte transporte : transportes) {
             if (transporte.getIdEmpleado().equals(empleadoABuscar)) {
-                empleadoEncontrado= transporte;
+                empleadoEncontrado = transporte;
                 break;
             }
         }
-       return empleadoEncontrado;
+        return empleadoEncontrado;
     }
+
     public void mostrarTransporte(ArrayList<Transporte> transportes) {
         for (Transporte transporte : transportes) {
-            System.out.println("\nEl tipo de transporte fue: " + this.tipoTransporte
-                    + "\nEl costo del transporte es: " + this.costoTransporte
-                    + "\nLa fecha de salida fue : " + this.fechaSalida
-                    + "\nLa fecha de llegada es : " + this.fechaRegreso
-                    + "\nLa ciudad de origen: " + this.ciudadOrigen
-                    + "\nLa ciudad de destino es: " + this.ciudadDestino
-                    + "\nEl alcance del viajes es " + this.alcanceTransporte
+            System.out.println("El tipo de transporte fue: " + transporte.tipoTransporte
+                    + "\nEl costo del transporte es: " + transporte.costoTransporte
+                    + "\nLa fecha de salida fue : " + transporte.fechaSalida
+                    + "\nLa fecha de llegada es : " + transporte.fechaRegreso
+                    + "\nLa ciudad de origen: " + transporte.ciudadOrigen
+                    + "\nLa ciudad de destino es: " + transporte.ciudadDestino
+                    + "\nEl alcance del viajes es " + transporte.alcanceTransporte+"\n"
             );
         }
     }

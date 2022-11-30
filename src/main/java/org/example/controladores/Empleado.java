@@ -45,6 +45,7 @@ public class Empleado {
     }
 
     public void setId(String id) {
+
         this.id = id;
     }
 
@@ -61,12 +62,16 @@ public class Empleado {
     }
 
     public void setSueldo(double sueldo) {
+        while (sueldo < 0) {
+            Scanner read = new Scanner(System.in);
+            System.out.println(red+"SUELDO INVÁLIDO"+reset);
+            System.out.print("Digite sueldo: ");
+            sueldo = read.nextDouble();
 
-        if (sueldo > 0) {
-            this.sueldo = sueldo;
-        } else {
-            System.out.println("Sueldo  no valido..");
         }
+        this.sueldo = sueldo;
+
+
     }
 
     public String getRango() {
@@ -76,9 +81,9 @@ public class Empleado {
     public void setRango(String rango) {
         Scanner read = new Scanner(System.in);
         while (!rango.equals("SENIOR") && !rango.equals("JUNIOR")) {
-            System.out.println(this.red+"INGRESE UN RANGO VALIDO: JUNIOR o SENIOR"+this.reset);
-            System.out.println("Digite rango: ");
-            rango=read.next().toUpperCase();
+            System.out.println(this.red + "INGRESE UN RANGO VÁLIDO: JUNIOR o SENIOR" + this.reset);
+            System.out.print("Digite rango: ");
+            rango = read.next().toUpperCase();
         }
         this.rango = rango.toUpperCase();
     }
@@ -129,10 +134,10 @@ public class Empleado {
             case "JUNIOR":
                 if (empleadoTransporte.getAlcanceTransporte().equals("NACIONAL")) {
                     empleado.setSueldo(empleado.getSueldo() + (0.2 * empleado.getSueldo()));
-                    System.out.println(this.green + "Se le dará un bono del 20% al " + empleado.cargo + " junior por viaje nacional\n" + this.reset);
+                    System.out.println(this.green + "Se le dará un bono del 20% al " + empleado.cargo + " JUNIOR por viaje nacional\n" + this.reset);
                 } else if (empleadoTransporte.getAlcanceTransporte().equals("INTERNACIONAL")) {
                     empleado.setSueldo(empleado.getSueldo() + (0.4 * empleado.getSueldo()));
-                    System.out.println(this.green + "Se le dará un bono del 40% al " + empleado.cargo + " junior por viaje internacional\n" + this.reset);
+                    System.out.println(this.green + "Se le dará un bono del 40% al " + empleado.cargo + " JUNIOR por viaje internacional\n" + this.reset);
                 }
                 break;
             case "SENIOR":
@@ -144,8 +149,8 @@ public class Empleado {
                     System.out.println(this.green + "Se le dará un bono del 50% al " + empleado.cargo + " SENIOR por viaje internacional\n" + this.reset);
                 }
                 break;
-
         }
 
     }
+
 }

@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Hospedaje {
+    String black = "\033[30m", red = "\033[31m", green = "\033[32m", yellow = "\033[33m", blue = "\033[34m", cyan = "\033[36m", reset = "\u001B[0m", purple = "\u001B[35m";
 
-    private String nombre;
+    private String nombre, fechaIngreso, fechaSalida, direccion, ciudad, idEmpleado;
     private double costo;
-    private String fechaIngreso;
-    private String fechaSalida;
-    private String direccion;
-    private String ciudad;
-    private String idEmpleado;
 
     public Hospedaje() {
     }
@@ -48,11 +44,13 @@ public class Hospedaje {
 
     public void setCosto(double costo) {
 
-        if (costo > 0) {
-            this.costo = costo;
-        } else {
-            System.out.println("Valor invalido.. ");
+        Scanner read = new Scanner(System.in);
+        while (costo < 0) {
+            System.out.println(this.red + "COSTO INVÁLIDO" + this.reset);
+            System.out.print("Ingrese el costo del lugar de hospedaje: ");
+            costo = read.nextDouble();
         }
+        this.costo = costo;
     }
 
     public String getFechaIngreso() {
@@ -84,24 +82,24 @@ public class Hospedaje {
     }
 
     public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+        this.ciudad = ciudad.toUpperCase();
     }
 
     // metodos
     public void agregarHospedaje() {
         Scanner read = new Scanner(System.in);
         System.out.print("Ingrese el nombre del lugar de hospedaje: ");
-        this.nombre = read.next().toUpperCase();
+        this.setNombre (read.next().toUpperCase());
         System.out.print("Ingrese el costo del lugar de hospedaje: ");
-        this.costo = read.nextDouble();
+        this.setCosto(read.nextDouble());
         System.out.print("Ingrese la fecha de ingreso: ");
-        this.fechaIngreso = read.next();
+        this.setFechaIngreso (read.next().toUpperCase());
         System.out.print("Ingrese la fecha de salida: ");
-        this.fechaSalida = read.next();
+        this.setFechaSalida(read.next());
         System.out.print("Ingrese la direccion del lugar de hospedaje: ");
-        this.direccion = read.next().toUpperCase();
+        this.setDireccion(read.next().toUpperCase());
         System.out.print("Ingrese la ciudad del lugar de hospedaje: ");
-        this.ciudad = read.next().toUpperCase();
+        this.setCiudad (read.next().toUpperCase());
     }
 
     public Hospedaje buscarHospedaje(ArrayList<Hospedaje> hospedajes, String empleadoABuscar) {
