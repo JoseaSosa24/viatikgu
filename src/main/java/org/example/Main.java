@@ -58,7 +58,7 @@ public class Main {
                         0. Salir\s""" + reset);
                 option = read.nextInt();
 
-                System.out.println(yellow + "¿Seguro desea realizar la acción número " + option + "del menú principal, S/N ?"+reset);
+                System.out.println(yellow + "¿Seguro desea realizar la acción número " + option + " del menú principal, S/N ?"+reset);
                 confirmacion = read.next().toUpperCase().charAt(0);
             } while (confirmacion.equals('N'));
 

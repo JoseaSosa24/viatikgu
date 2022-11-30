@@ -46,7 +46,32 @@ public class Empleado {
 
     public void setId(String id) {
 
-        this.id = id;
+        boolean isNumeric = (id != null && id.matches("[0-9]+"));
+
+        while (id.length() > 10 || !isNumeric) {
+            Scanner read = new Scanner(System.in);
+
+            if (id.length() > 10 && isNumeric) {
+                System.out.println(this.red + "La longitud de caracteres del id es mayor a la requerida" +
+                        " (El numero debe ser menor o igual a 10 digitos)" + reset);
+                System.out.println("ingrese nuevamente el numero de documento de identidad");
+                id = read.next();
+                //isNumeric = (id != null && id.matches("[0-9]+"));
+
+            } else if (!isNumeric) {
+                System.out.println(this.red + "Ha ingresado datos no numericos o un numero negativo" + reset);
+                System.out.println("ingrese nuevamente el numero de documento de identidad");
+                id = read.next();
+                isNumeric = (id != null && id.matches("[0-9]+"));
+
+            } else {
+                this.id = id;
+                break;
+            }
+
+
+        }
+
     }
 
     public String getCargo() {
@@ -64,7 +89,7 @@ public class Empleado {
     public void setSueldo(double sueldo) {
         while (sueldo < 0) {
             Scanner read = new Scanner(System.in);
-            System.out.println(red+"SUELDO INVÁLIDO"+reset);
+            System.out.println(red + "SUELDO INVÁLIDO" + reset);
             System.out.print("Digite sueldo: ");
             sueldo = read.nextDouble();
 
