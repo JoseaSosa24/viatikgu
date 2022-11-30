@@ -40,42 +40,49 @@ public class Main {
 
 
         Scanner read = new Scanner(System.in);
-        System.out.println(cyan+"\n*****************************************");
+        System.out.println(cyan + "\n*****************************************");
         System.out.println("********* BIENVENIDO A VIATIKGU *********");
-        System.out.println("*****************************************\n"+reset);
+        System.out.println("*****************************************\n" + reset);
         int option;
 
         do {
-            System.out.println(cyan+"\n     *********MENÚ PRINCIPAL********\n");
-            System.out.println("""
-                    1. Registrar empleado\s
-                    2. Registrar viajes (transporte, hospedaje, alimentación)\s
-                    3. Ver empleados\s
-                    4. Ver viajes de un empleado (trasporte, hospedaje, alimentacion)\s
-                    5. Buscar un empleado\s
-                    0. Salir\s"""+reset);
-            option = read.nextInt();
+            Character confirmacion;
+            do {
+                System.out.println(cyan + "\n     *********MENÚ PRINCIPAL********\n");
+                System.out.println("""
+                        1. Registrar empleado\s
+                        2. Registrar viajes (transporte, hospedaje, alimentación)\s
+                        3. Ver empleados\s
+                        4. Ver viajes de un empleado (trasporte, hospedaje, alimentacion)\s
+                        5. Buscar un empleado\s
+                        0. Salir\s""" + reset);
+                option = read.nextInt();
+
+                System.out.println(yellow + "¿Seguro desea realizar la acción número " + option + "del menú principal, S/N ?"+reset);
+                confirmacion = read.next().toUpperCase().charAt(0);
+            } while (confirmacion.equals('N'));
 
             switch (option) {
                 case 0:
+                    System.out.print(green+"FINALIZANDO EL PROGRAMA");
                     break;
 
                 case 1:
-                    System.out.println(purple+"\n******INGRESANDO EMPLEADO*****\n"+reset);
+                    System.out.println(purple + "\n******INGRESANDO EMPLEADO*****\n" + reset);
                     objEmpleado = new Empleado();
                     objEmpleado.agregarEmpleado();
                     if (objEmpleado.buscarEmpleado(empleados, objEmpleado.getId()) == null) {
                         empleados.add(objEmpleado);
-                        System.out.print(green+"\n¡Empleado agregado correctamente!\n"+reset);
+                        System.out.print(green + "\n¡Empleado agregado correctamente!\n" + reset);
                     } else {
-                        System.out.println(yellow+"\nEl empleado con esa ID, YA existe"+reset);
+                        System.out.println(yellow + "\nEl empleado con esa ID, YA existe" + reset);
                     }
                     break;
 
                 case 2:
                     int optionTravel;
-                    System.out.println(cyan+"\n****** Menú para ingresar viajes ******\n"+reset);
-                    System.out.print(purple+"Ingrese el id del empleado para asignarle viaticos: "+purple);
+                    System.out.println(cyan + "\n****** Menú para ingresar viajes ******\n" + reset);
+                    System.out.print(purple + "Ingrese el id del empleado para asignarle viaticos: " + purple);
                     String idEmpleado = read.next();
                     objEmpleado = new Empleado();
                     Empleado empleadoEncontrado = objEmpleado.buscarEmpleado(empleados, idEmpleado);
@@ -83,25 +90,25 @@ public class Main {
                         boolean banderaTransporte = false, banderaAlimentacion = false, banderaHospedaje = false;
                         int swViajes = 0;
 
-                        System.out.println(green+"\nDatos del EMPLEADO: ");
+                        System.out.println(green + "\nDatos del EMPLEADO: ");
                         empleadoEncontrado.mostrarEmpleado();
 
                         do {
-                            System.out.println(purple+"\n**** INGRESANDO VIATICOS PARA "+empleadoEncontrado.getNombre()+" ****"+reset);
-                            System.out.println(purple+"\n" + """
+                            System.out.println(purple + "\n**** INGRESANDO VIATICOS PARA " + empleadoEncontrado.getNombre() + " ****" + reset);
+                            System.out.println(purple + "\n" + """
                                     1. Ingresar Transporte
                                     2. Ingresar Alimentación
                                     3. Ingresar Hospedaje
-                                    0. Salir"""+reset);
+                                    0. Salir""" + reset);
                             optionTravel = read.nextInt();
 
                             switch (optionTravel) {
 
                                 case 0:
                                     if (banderaTransporte && banderaAlimentacion && banderaHospedaje && swViajes == 1) {
-                                        System.out.println(green+"\nVolviendo al menú principal..."+reset);
+                                        System.out.println(green + "\nVolviendo al menú principal..." + reset);
                                     } else {
-                                        System.out.println(yellow+"\nADVERTENCIA: Le faltan viaticos por entrar de este viaje"+reset);
+                                        System.out.println(yellow + "\nADVERTENCIA: Le faltan viaticos por entrar de este viaje" + reset);
                                     }
                                     System.out.println("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
@@ -109,18 +116,18 @@ public class Main {
 
                                 case 1:
                                     if (banderaTransporte) {
-                                        System.out.print(yellow+"ADVERTENCIA: Antes de registrar nuevamente un Transporte, debe terminar el registro COMPLETO del viaje actual\n"+reset);
+                                        System.out.print(yellow + "ADVERTENCIA: Antes de registrar nuevamente un Transporte, debe terminar el registro COMPLETO del viaje actual\n" + reset);
                                     } else {
                                         swViajes++;
-                                        System.out.println(purple+"\n**** Ingresando transporte ****\n"+reset);
+                                        System.out.println(purple + "\n**** Ingresando transporte ****\n" + reset);
                                         objTransporte = new Transporte();
                                         objTransporte.setIdEmpleado(idEmpleado);
                                         objTransporte.agregarTransporte();
                                         transportes.add(objTransporte);
                                         banderaTransporte = true;
-                                        System.out.println(green+"\n¡Transporte agregado exitosamente!"+reset);
+                                        System.out.println(green + "\n¡Transporte agregado exitosamente!" + reset);
                                         Transporte transporte = objTransporte.buscarTransporte(transportes, idEmpleado);
-                                        empleadoEncontrado.calcularBono(transporte,empleadoEncontrado);
+                                        empleadoEncontrado.calcularBono(transporte, empleadoEncontrado);
                                     }
                                     System.out.println("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
@@ -128,17 +135,17 @@ public class Main {
 
                                 case 2:
                                     if (banderaAlimentacion) {
-                                        System.out.print(yellow+"ADVERTENCIA: Antes de registrar nuevamente una Alimentación, debe terminar el registro COMPLETO del viaje actual\n"+reset);
+                                        System.out.print(yellow + "ADVERTENCIA: Antes de registrar nuevamente una Alimentación, debe terminar el registro COMPLETO del viaje actual\n" + reset);
                                     } else if (banderaTransporte) {
-                                        System.out.println(purple+"\n**** Ingresando Alimentación ****"+reset);
+                                        System.out.println(purple + "\n**** Ingresando Alimentación ****" + reset);
                                         objAlimentacion = new Alimentacion();
                                         objAlimentacion.setIdEmpleado(idEmpleado);
                                         objAlimentacion.agregarAlimentacion();
                                         alimentos.add(objAlimentacion);
                                         banderaAlimentacion = true;
-                                        System.out.println(green+"\n¡Alimentación agregada exitosamente!"+reset);
+                                        System.out.println(green + "\n¡Alimentación agregada exitosamente!" + reset);
                                     } else {
-                                        System.out.print(yellow+"\nDebe ingresar viaticos de transporte primero"+reset);
+                                        System.out.print(yellow + "\nDebe ingresar viaticos de transporte primero" + reset);
                                     }
                                     System.out.println("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
@@ -146,17 +153,17 @@ public class Main {
 
                                 case 3:
                                     if (banderaHospedaje) {
-                                        System.out.print(yellow+"ADVERTENCIA: Antes de registrar nuevamente un Hospedaje, debe terminar el registro COMPLETO del viaje actual\n"+reset);
+                                        System.out.print(yellow + "ADVERTENCIA: Antes de registrar nuevamente un Hospedaje, debe terminar el registro COMPLETO del viaje actual\n" + reset);
                                     } else if (banderaAlimentacion) {
-                                        System.out.println(purple+"\n**** Ingresando Hospedaje ****\n"+reset);
+                                        System.out.println(purple + "\n**** Ingresando Hospedaje ****\n" + reset);
                                         objHospedaje = new Hospedaje();
                                         objHospedaje.setIdEmpleado(idEmpleado);
                                         objHospedaje.agregarHospedaje();
                                         hospedajes.add(objHospedaje);
                                         banderaHospedaje = true;
-                                        System.out.println(green+"\n¡Hospedaje agregado exitosamente!"+reset);
+                                        System.out.println(green + "\n¡Hospedaje agregado exitosamente!" + reset);
                                     } else {
-                                        System.out.print(yellow+"\nDebe ingresar viaticos de Alimentación primero"+reset);
+                                        System.out.print(yellow + "\nDebe ingresar viaticos de Alimentación primero" + reset);
                                     }
                                     System.out.println("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
@@ -165,7 +172,7 @@ public class Main {
                                     System.err.println("\nOpción no valida\n");
                             }
                             if (banderaTransporte && banderaAlimentacion && banderaHospedaje) {
-                                System.out.print(green+"\n¡Los viaticos(transporte, hospedaje, alimentación) de este viaje para el empleado " + empleadoEncontrado.getNombre() + " han sido agregados extitosamente!\n"+reset);
+                                System.out.print(green + "\n¡Los viaticos(transporte, hospedaje, alimentación) de este viaje para el empleado " + empleadoEncontrado.getNombre() + " han sido agregados extitosamente!\n" + reset);
                                 System.out.print("\n¿Desea Registrarle otro viaje a este empleado? 1:SÍ 0:NO: ");
                                 optionTravel = read.nextInt();
                                 if (optionTravel == 1) {
@@ -173,8 +180,8 @@ public class Main {
                                     banderaTransporte = false;
                                     banderaAlimentacion = false;
                                     banderaHospedaje = false;
-                                }else {
-                                    System.out.println(green+"\nVolviendo al menú principal..."+reset);
+                                } else {
+                                    System.out.println(green + "\nVolviendo al menú principal..." + reset);
                                 }
 
                             }
@@ -189,15 +196,15 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println(purple+"\n-------MOSTRANDO EMPLEADOS----------"+reset);
+                    System.out.println(purple + "\n-------MOSTRANDO EMPLEADOS----------" + reset);
                     objEmpleado = new Empleado();
                     objEmpleado.mostrarEmpleado(empleados);
-                    System.out.println(purple+"\n------------------------------------\n"+reset);
+                    System.out.println(purple + "\n------------------------------------\n" + reset);
                     System.out.println("-->Presione ENTER para continuar<--");
                     System.in.read();
                     break;
                 case 4:
-                    System.out.print(purple+"\nIngrese el id del empleado a mostrar viajes: "+reset);
+                    System.out.print(purple + "\nIngrese el id del empleado a mostrar viajes: " + reset);
                     String idEmpleadoBuscar = read.next();
                     objEmpleado = new Empleado();
                     objTransporte = new Transporte();
@@ -208,18 +215,18 @@ public class Main {
                         objTransporte = new Transporte();
                         if (empleadoTransporte != null) {
                             System.out.println("El id del empleado es: " + empleadoTransporte.getIdEmpleado());
-                            System.out.println(purple+"\n --------------LOS VIAJES RELIZADOS POR ESTE EMPLEADO/A SON:---------- \n"+reset);
-                            System.out.println(green+"Datos transporte:"+reset);
+                            System.out.println(purple + "\n --------------LOS VIAJES RELIZADOS POR ESTE EMPLEADO/A SON:---------- \n" + reset);
+                            System.out.println(green + "Datos transporte:" + reset);
                             objAlimentacion = new Alimentacion();
                             objHospedaje = new Hospedaje();
                             objTransporte.buscarTransporte(transportes, idEmpleadoBuscar).mostrarTransporte(transportes);
-                            System.out.println(green+"\nDatos Alimentacion: "+reset);
+                            System.out.println(green + "\nDatos Alimentacion: " + reset);
                             objAlimentacion.buscarAlimentacion(alimentos, idEmpleadoBuscar).mostrarAlimentacion(alimentos);
-                            System.out.println(green+"\nDatos Hospedaje:"+reset);
+                            System.out.println(green + "\nDatos Hospedaje:" + reset);
                             objHospedaje.buscarHospedaje(hospedajes, idEmpleadoBuscar).mostrarHospedaje(hospedajes);
-                            System.out.println(purple+" -----------------------------------------------------------------------\n "+reset);
+                            System.out.println(purple + " -----------------------------------------------------------------------\n " + reset);
                         } else {
-                            System.out.println(yellow+"\nEl empleado existe pero no tiene viajes realizados\n"+reset);
+                            System.out.println(yellow + "\nEl empleado existe pero no tiene viajes realizados\n" + reset);
                         }
                     } else {
                         System.err.println("\nEl empleado NO existe\n");
@@ -228,11 +235,11 @@ public class Main {
                     System.in.read();
                     break;
                 case 5:
-                    System.out.print(purple+"\nIngrese el id del empleado a buscar: "+reset);
+                    System.out.print(purple + "\nIngrese el id del empleado a buscar: " + reset);
                     String idBuscado = read.next();
                     objEmpleado = new Empleado();
                     if (objEmpleado.buscarEmpleado(empleados, idBuscado) != null) {
-                        System.out.print(green+"¡EMPLEADO ECONTRADO!, SUS DATOS SON:\n"+reset);
+                        System.out.print(green + "¡EMPLEADO ECONTRADO!, SUS DATOS SON:\n" + reset);
                         objEmpleado.buscarEmpleado(empleados, idBuscado).mostrarEmpleado();
                     } else {
                         System.err.print("¡EL EMPLEADO NO EXISTE!\n");
@@ -248,7 +255,7 @@ public class Main {
 
     }
 
-    public void esperarEnter() throws IOException{
+    public void esperarEnter() throws IOException {
         System.out.println("\n-->Presione ENTER para continuar<--");
         System.in.read();
     }
