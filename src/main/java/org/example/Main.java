@@ -58,13 +58,13 @@ public class Main {
                         0. Salir\s""" + reset);
                 option = read.nextInt();
 
-                System.out.println(yellow + "¿Seguro desea realizar la acción número " + option + " del menú principal, S/N ?"+reset);
+                System.out.println(yellow + "¿Seguro desea realizar la acción número " + option + " del menú principal, S/N ?" + reset);
                 confirmacion = read.next().toUpperCase().charAt(0);
             } while (confirmacion.equals('N'));
 
             switch (option) {
                 case 0:
-                    System.out.print(green+"FINALIZANDO EL PROGRAMA");
+                    System.out.print(green + "FINALIZANDO EL PROGRAMA");
                     break;
 
                 case 1:
@@ -77,7 +77,10 @@ public class Main {
                     } else {
                         System.out.println(yellow + "\nEl empleado con esa ID, YA existe" + reset);
                     }
+                    System.out.print("\n-->Presione ENTER para continuar<--");
+                    System.in.read();
                     break;
+
 
                 case 2:
                     int optionTravel;
@@ -129,7 +132,7 @@ public class Main {
                                         Transporte transporte = objTransporte.buscarTransporte(transportes, idEmpleado);
                                         empleadoEncontrado.calcularBono(transporte, empleadoEncontrado);
                                     }
-                                    System.out.println("\n-->Presione ENTER para continuar<--");
+                                    System.out.print("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
                                     break;
 
@@ -147,7 +150,7 @@ public class Main {
                                     } else {
                                         System.out.print(yellow + "\nDebe ingresar viaticos de transporte primero" + reset);
                                     }
-                                    System.out.println("\n-->Presione ENTER para continuar<--");
+                                    System.out.print("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
                                     break;
 
@@ -165,7 +168,7 @@ public class Main {
                                     } else {
                                         System.out.print(yellow + "\nDebe ingresar viaticos de Alimentación primero" + reset);
                                     }
-                                    System.out.println("\n-->Presione ENTER para continuar<--");
+                                    System.out.print("\n-->Presione ENTER para continuar<--");
                                     System.in.read();
                                     break;
                                 default:
@@ -200,7 +203,7 @@ public class Main {
                     objEmpleado = new Empleado();
                     objEmpleado.mostrarEmpleado(empleados);
                     System.out.println(purple + "\n------------------------------------\n" + reset);
-                    System.out.println("-->Presione ENTER para continuar<--");
+                    System.out.print("-->Presione ENTER para continuar<--");
                     System.in.read();
                     break;
                 case 4:
@@ -231,7 +234,7 @@ public class Main {
                     } else {
                         System.err.println("\nEl empleado NO existe\n");
                     }
-                    System.out.println("\n-->Presione ENTER para continuar<--");
+                    System.out.print("\n-->Presione ENTER para continuar<--");
                     System.in.read();
                     break;
                 case 5:
@@ -245,7 +248,7 @@ public class Main {
                         System.err.print("¡EL EMPLEADO NO EXISTE!\n");
 
                     }
-                    System.out.println("\n-->Presione ENTER para continuar<--");
+                    System.out.print("\n-->Presione ENTER para continuar<--");
                     System.in.read();
                     break;
                 default:
@@ -256,7 +259,7 @@ public class Main {
     }
 
     public void esperarEnter() throws IOException {
-        System.out.println("\n-->Presione ENTER para continuar<--");
+        System.out.print("\n-->Presione ENTER para continuar<--");
         System.in.read();
     }
 }
