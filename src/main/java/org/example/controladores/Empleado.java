@@ -65,12 +65,14 @@ public class Empleado {
                 isNumeric = (id != null && id.matches("[0-9]+"));
 
             } else {
-                this.id = id;
+
                 break;
             }
 
 
+
         }
+        this.id = id;
 
     }
 
